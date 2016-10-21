@@ -267,6 +267,8 @@ USERNAME = r'^[a-zA-Z0-9_.-]{3,16}$'
 # RegEx pattern for matching password.
 PASSWORD = r'^[a-z0-9_-]{6,18}$'
 
+
+
 # RegEx pattern for matching uppercase letters.
 UPPERCASE = r'[A-Z]+$'
 
@@ -316,5 +318,5 @@ def password(mi=6, mx=18):
     :param mx: Maximum length of password.
     :return:
     """
-    pattern = r'/^[a-z0-9_-]{%s,%s}$/' % (mi, mx)
+    pattern = r'(^[a-z0-9_-]{%s,%s}$)' % (mi, mx)
     return pattern
