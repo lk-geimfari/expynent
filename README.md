@@ -1,8 +1,15 @@
+[![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
+[![PyPI version](https://badge.fury.io/py/expynent.svg)](https://badge.fury.io/py/expynent)
+
 <p align="center">
+<a href="https://github.com/lk-geimfari/expynent/">
   <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo.png">
+</a>
 </p>
 
- **expynent** is a tinny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
+
+
+expynent is a tinny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
 
 
 
