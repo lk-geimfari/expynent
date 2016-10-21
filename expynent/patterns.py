@@ -23,7 +23,7 @@ ZIP_CODE = {
     "TW": r"\d{3}(\d{2})?",
     "SG": r"\d{6}",
     "DZ": r"\d{5}",
-    "AD": "AD\d{3}",
+    "AD": r"AD\d{3}",
     "AR": r"([A-HJ-NP-Z])?\d{4}([A-Z]{3})?",
     "AM": r"(37)?\d{4}",
     "AZ": r"\d{4}",
@@ -44,16 +44,16 @@ ZIP_CODE = {
     "CY": r"\d{4}",
     "CZ": r"\d{3}[ ]?\d{2}",
     "DO": r"\d{5}",
-    "EC": "([A-Z]\d{4}[A-Z]|(?:[A-Z]{2})?\d{6})?",
+    "EC": r"([A-Z]\d{4}[A-Z]|(?:[A-Z]{2})?\d{6})?",
     "EG": r"\d{5}",
     "EE": r"\d{5}",
     "FO": r"\d{3}",
     "GE": r"\d{4}",
     "GR": r"\d{3}[ ]?\d{2}",
-    "GL": "39\d{2}",
+    "GL": r"39\d{2}",
     "GT": r"\d{5}",
     "HT": r"\d{4}",
-    "HN": "(?:\d{5})?",
+    "HN": r"(?:\d{5})?",
     "HU": r"\d{4}",
     "IS": r"\d{3}",
     "IN": r"\d{6}",
@@ -168,6 +168,9 @@ MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
 # RegEx pattern for matching username.
 USERNAME = r'^[a-zA-Z0-9_.-]+$'
 
+# RegEx pattern for matching uppercase letters.
+UPPERCASE = r'[A-Z]+$'
+
 
 def file_extension(ext=''):
     """
@@ -176,7 +179,7 @@ def file_extension(ext=''):
     :param ext: Extension of the file.
     :return: Regex pattern.
     """
-    pattern = '([-\w]+\.(?:%s))' % ext
+    pattern = r'([-\w]+\.(?:%s))' % ext
     return pattern
 
 
@@ -188,5 +191,5 @@ def password(mi=6, mx=18):
     :param mx: Maximum length of password.
     :return:
     """
-    pattern = '/^[a-z0-9_-]{%s,%s}$/' % (mi, mx)
+    pattern = r'/^[a-z0-9_-]{%s,%s}$/' % (mi, mx)
     return pattern
