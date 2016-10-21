@@ -201,6 +201,20 @@ HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 # RegEx pattern to match a year from 1900-2099
 YEAR = r'^(19|20)\d{2}$'
 
+BITCOIN_ADDRESS = r'(?<![a-km-zA-HJ-NP-Z0-9])[13]' \
+                  r'[a-km-zA-HJ-NP-Z0-9]{26,33}(?![a-km-zA-HJ-NP-Z0-9])'
+
+# RegEx pattern to match Y.Money.
+YANDEX_MONEY = r"\d{14}"
+
+# RegEx pattern to match latitude.
+LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
+           r'[1-8][0-9])(?:(?:\.[0-9]{1,14})?))$'
+
+# RegEx pattern to match longitude.
+LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
+            r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
+
 
 def file_extension(ext=''):
     """

@@ -97,6 +97,26 @@ class PatternsTestCase(unittest.TestCase):
         year = '2016'
         self.assertTrue(re.match(year_pattern, year))
 
+    def test_bitcoin_address(self):
+        bitcoin_pattern = self.patterns.BITCOIN_ADDRESS
+        address = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT'
+        self.assertTrue(re.match(bitcoin_pattern, address))
+
+    def test_yandex_money_pattern(self):
+        ym_pattern = self.patterns.YANDEX_MONEY
+        ym = '97508675463414'
+        self.assertTrue(re.match(ym_pattern, ym))
+
+    def test_longitude_pattern(self):
+        longitude_pattern = self.patterns.LONGITUDE
+        x = '112.1844026051194'
+        self.assertTrue(re.match(longitude_pattern, x))
+
+    def test_latitude_pattern(self):
+        latitude_pattern = self.patterns.LATITUDE
+        x = '-66.4214188124611'
+        self.assertTrue(re.match(latitude_pattern, x))
+
 
 class CompiledPatternsTestCase(unittest.TestCase):
     def setUp(self):
@@ -172,3 +192,23 @@ class CompiledPatternsTestCase(unittest.TestCase):
         year_pattern = self.compiled_patterns.year
         year = '2016'
         self.assertTrue(year_pattern.match(year))
+
+    def test_bitcoin_pattern(self):
+        bitcoin_pattern = self.compiled_patterns.bitcoin
+        address = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT'
+        self.assertTrue(bitcoin_pattern.match(address))
+
+    def test_yandex_money_pattern(self):
+        ym_pattern = self.compiled_patterns.yandex_money
+        ym = '97508675463414'
+        self.assertTrue(ym_pattern.match(ym))
+
+    def test_longitude_pattern(self):
+        longitude_pattern = self.compiled_patterns.longitude
+        x = '112.1844026051194'
+        self.assertTrue(longitude_pattern.match(x))
+
+    def test_latitude_pattern(self):
+        latitude_pattern = self.compiled_patterns.latitude
+        x = '-66.4214188124611'
+        self.assertTrue(latitude_pattern.match(x))
