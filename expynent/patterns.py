@@ -148,8 +148,7 @@ ZIP_CODE = {
 }
 
 # RegEx pattern for matching email.
-EMAIL = r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+' \
-        r'\.[a-zA-Z0-9-.]+$)'
+EMAIL = r'([\w\.-]+)@([\w\.-]+)'
 
 # RegEx pattern for matching URL.
 URL = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|' \
