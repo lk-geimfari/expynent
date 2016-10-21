@@ -19,7 +19,7 @@ ZIP_CODE = {
     "FI": r"\d{5}",
     "AX": r"22\d{3}",
     "KR": r"\d{3}[\-]\d{3}",
-    "CN": r"\d{6}",
+    "CN": r"[1-9]\d{5}",
     "TW": r"\d{3}(\d{2})?",
     "SG": r"\d{6}",
     "DZ": r"\d{5}",
@@ -148,7 +148,7 @@ ZIP_CODE = {
 }
 
 # RegEx pattern for matching email.
-EMAIL = r'([\w\.-]+)@([\w\.-]+)'
+EMAIL = r'^(\w+([-+.]\w+)*)\w*@(\w+([-.]\w+)*\.\w+([-.]\w+)*)$'
 
 # RegEx pattern for matching URL.
 URL = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|' \
@@ -203,6 +203,12 @@ HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 # RegEx pattern to match a year from 1900-2099
 YEAR = r'^(19|20)\d{2}$'
 
+# RegEx pattern to match a month from 01-12
+MONTH = r'^(0?[1-9]|1[0-2])$'
+
+# RegEx pattern to match a day from 01-31
+DAY = r'^((0?[1-9])|((1|2)[0-9])|30|31)$'
+
 BITCOIN_ADDRESS = r'(?<![a-km-zA-HJ-NP-Z0-9])[13]' \
                   r'[a-km-zA-HJ-NP-Z0-9]{26,33}(?![a-km-zA-HJ-NP-Z0-9])'
 
@@ -238,4 +244,10 @@ def password(mi=6, mx=18):
     :return:
     """
     pattern = r'(^[a-z0-9_-]{%s,%s}$)' % (mi, mx)
+    return pattern
+
+def strong_password(mi=6, mx=18):
+    """
+    """
+    pattern = r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{%s,%s}' % (mi, mx)
     return pattern
