@@ -174,16 +174,33 @@ fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}| \
 1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]| \
 1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
 
+# RegEx to match a domain.
+DOMAIN = r'^([a-z][a-z0-9-]+(\.|-*\.))+[a-z]{2,6}$'
+
 # RegEx pattern for matching MAC-address.
 MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
               r'([0-9A-Fa-f]{2})$'
 
-# RegEx pattern for matching username.
-USERNAME = r'^[a-zA-Z0-9_.-]+$'
+# RegEx pattern for matching username >3 and <= 16 characters.
+USERNAME = r'^[a-zA-Z0-9_.-]{3,16}$'
+
+# RegEx pattern for matching password.
+PASSWORD = r'^[a-z0-9_-]{6,18}$'
 
 # RegEx pattern for matching uppercase letters.
 UPPERCASE = r'[A-Z]+$'
 
+# RegEx pattern for matching a HEX value ie. #a3c113
+HEX_VALUE = r'^#?([a-f0-9]{6}|[a-f0-9]{3})$'
+
+# RegEx pattern that matches a slug ie. greatest-slug-ever
+SLUG = r'^[a-z0-9-]+$'
+
+# RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'.
+HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
+
+# RegEx pattern to match a year from 1900-2099
+YEAR = r'^(19|20)\d{2}$'
 
 def file_extension(ext=''):
     """
