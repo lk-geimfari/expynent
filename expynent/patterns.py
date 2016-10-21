@@ -1,3 +1,4 @@
+# RegEx pattern for matching zip code.
 ZIP_CODE = {
     "US": r"\d{5}([ \-]\d{4})?",
     "DE": r"\d{5}",
@@ -146,21 +147,46 @@ ZIP_CODE = {
     "YT": r"976\d{2}"
 }
 
+# RegEx pattern for matching email.
 EMAIL = r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+' \
         r'\.[a-zA-Z0-9-.]+$)'
 
+# RegEx pattern for matching URL.
 URL = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|' \
       r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
 
-CREDIT_CARD= '[\d]+((-|\s)?[\d]+)+'
+# RegEx pattern for matching credit card.
+CREDIT_CARD = '[\d]+((-|\s)?[\d]+)+'
 
+# RegEx pattern for matching IP address.
 IP_V4 = r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+
+# RegEx pattern for matching MAC-address.
 MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
               r'([0-9A-Fa-f]{2})$'
 
+# RegEx pattern for matching username.
 USERNAME = r'^[a-zA-Z0-9_.-]+$'
 
 
 def file_extension(ext=''):
+    """
+    Return the regex pattern for file extension.
+
+    :param ext: Extension of the file.
+    :return: Regex pattern.
+    """
     pattern = '([-\w]+\.(?:%s))' % ext
+    return pattern
+
+
+def password(mi=6, mx=18):
+    """
+    Return the regex pattern for password
+
+    :param mi: Minimal length of password.
+    :param mx: Maximum length of password.
+    :return:
+    """
+    pattern = '/^[a-z0-9_-]{%s,%s}$/' % (mi, mx)
     return pattern

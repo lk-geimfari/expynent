@@ -53,3 +53,8 @@ class PatternsTestCase(unittest.TestCase):
         url_pattern = self.patterns.URL
         url = 'https://github.com/lk-geimfari/expynent'
         self.assertTrue(re.match(url_pattern, url))
+
+    def test_password(self):
+        pass_pattern = self.patterns.password()
+        password = 'some.pa$$w0rd_d'
+        self.assertTrue(pass_pattern, password)
