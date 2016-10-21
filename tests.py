@@ -65,7 +65,7 @@ class PatternsTestCase(unittest.TestCase):
     def test_password(self):
         pass_pattern = self.patterns.password()
         password = 'some.pa$$w0rd_d'
-        self.assertTrue(pass_pattern, password)
+        self.assertTrue(re.match(pass_pattern, password))
 
     def test_domain_pattern(self):
         domain_pattern = self.patterns.DOMAIN
