@@ -201,6 +201,7 @@ HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 # RegEx pattern to match a year from 1900-2099
 YEAR = r'^(19|20)\d{2}$'
 
+
 def file_extension(ext=''):
     """
     Return the regex pattern for file extension.

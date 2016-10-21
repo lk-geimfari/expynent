@@ -33,6 +33,18 @@ else:
 # Output: 'not match'
 
 ```
+also you can use compiled patterns:
+```python
+from expynent.compiled import username
+
+u = input('Enter username: ')
+
+if username.match(u):
+    print('valid')
+else:
+    print('invalid')
+```
+
 
 #### Contributing
 Your contributions are always welcome! Please take a look at the [contribution](https://github.com/lk-geimfari/expynent/blob/master/CONTRIBUTING.md) guidelines first.
