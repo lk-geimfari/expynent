@@ -144,7 +144,8 @@ ZIP_CODE = {
     "TC": r"TKCA 1ZZ",
     "WF": r"986\d{2}",
     "XK": r"\d{5}",
-    "YT": r"976\d{2}"
+    "YT": r"976\d{2}",
+    "CA": r"^[A-Z]\d[A-Z] ?\d[A-Z]\d$"
 }
 
 # RegEx pattern for matching email.
