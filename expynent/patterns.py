@@ -148,10 +148,6 @@ ZIP_CODE = {
     'ZM': '\d{5}'
 }
 
-# RegEx pattern for matching URL.
-URL = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|' \
-      r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-
 # RegEx pattern for matching credit card.
 CREDIT_CARD = '[\d]+((-|\s)?[\d]+)+'
 
@@ -251,42 +247,15 @@ IP_V6 = r"""^
      \s* # Trailing whitespace
     $"""
 
-# RegEx to match a domain.
-DOMAIN = r'^([a-z][a-z0-9-]+(\.|-*\.))+[a-z]{2,6}$'
-
 # RegEx pattern for matching MAC-address.
 MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
               r'([0-9A-Fa-f]{2})$'
-
-# RegEx pattern for matching username >3 and <= 16 characters.
-USERNAME = r'^[a-zA-Z0-9_.-]{3,16}$'
-
-# RegEx pattern for matching password.
-PASSWORD = r'^[a-z0-9_-]{6,18}$'
-
-# RegEx pattern for matching uppercase letters.
-UPPERCASE = r'[A-Z]+$'
 
 # RegEx pattern for matching a HEX value ie. #a3c113
 HEX_VALUE = r'^#?([a-f0-9]{6}|[a-f0-9]{3})$'
 
 # RegEx pattern that matches a slug ie. greatest-slug-ever
 SLUG = r'^[a-z0-9-]+$'
-
-# RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'
-HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
-
-# Regex pattern to match HTML tags that have javascript events attached to them
-HTML_JS_TAG = r'<[a-zA-Z][^>]*\son\w+=(\w+|\'[^\']*\'|"[^"]*")[^>]*>'
-
-# RegEx pattern to match a year from 1900-2099
-YEAR = r'^(19|20)\d{2}$'
-
-# RegEx pattern to match a month from 01-12
-MONTH = r'^(0?[1-9]|1[0-2])$'
-
-# RegEx pattern to match a day from 01-31
-DAY = r'^((0?[1-9])|((1|2)[0-9])|30|31)$'
 
 BITCOIN_ADDRESS = r'(?<![a-km-zA-HJ-NP-Z0-9])[13]' \
                   r'[a-km-zA-HJ-NP-Z0-9]{26,33}(?![a-km-zA-HJ-NP-Z0-9])'
@@ -309,33 +278,3 @@ PHONE_NUMBER = {
     # RegEx pattern to match Indian Phone numbers
     'IN': r'\d{10}'
 }
-
-
-def file_extension(ext=''):
-    """
-    Return the regex pattern for file extension.
-
-    :param ext: Extension of the file.
-    :return: Regex pattern.
-    """
-    pattern = r'([-\w]+\.(?:%s))' % ext
-    return pattern
-
-
-def password(mi=6, mx=18):
-    """
-    Return the regex pattern for password
-
-    :param mi: Minimal length of password.
-    :param mx: Maximum length of password.
-    :return:
-    """
-    pattern = r'(^[a-z0-9_-]{%s,%s}$)' % (mi, mx)
-    return pattern
-
-
-def strong_password(mi=6, mx=18):
-    """
-    """
-    pattern = r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{%s,%s}' % (mi, mx)
-    return pattern
