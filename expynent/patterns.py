@@ -299,8 +299,13 @@ LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
 LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
-#RegEx pattern to match Indian Phone numbers
-MOBILE_NUMBER = {'IN': r'\d{10}'}
+# List of RegEx patterns for phone numbers by country
+PHONE_NUMBER = {
+    # RegEx pattern to match French phone numbers (with and without country code)
+    'FR': r'^(?:\+33|0)\d{9}$',
+    #RegEx pattern to match Indian Phone numbers
+    'IN': r'\d{10}'
+}
 
 
 def file_extension(ext=''):
