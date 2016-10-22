@@ -299,6 +299,8 @@ LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
 LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
+# RegEx pattern to match French phone numbers (with and without country code)
+FRENCH_PHONE = r'^(?:\+33|0)\d{9}$'
 
 def file_extension(ext=''):
     """
