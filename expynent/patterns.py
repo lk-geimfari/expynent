@@ -148,9 +148,6 @@ ZIP_CODE = {
     'ZM': '\d{5}'
 }
 
-# RegEx pattern for matching email.
-EMAIL = r'^(\w+([-+.]\w+)*)\w*@(\w+([-.]\w+)*\.\w+([-.]\w+)*)$'
-
 # RegEx pattern for matching URL.
 URL = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|' \
       r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
@@ -250,7 +247,7 @@ IP_V6 = r"""^
         (?:::(?!:))
         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,6}[0-9a-f]{1,4})?
      )
-     (?:/(?:1(?:2[0-7]|[01]\d)|\d\d?))? # With an optional CIDR routing prefix (0-128)
+     (?:/(?:1(?:2[0-7]|[01]\d)|\d\d?))? # optional CIDR routing prefix (0-128)
      \s* # Trailing whitespace
     $"""
 
@@ -276,7 +273,7 @@ HEX_VALUE = r'^#?([a-f0-9]{6}|[a-f0-9]{3})$'
 # RegEx pattern that matches a slug ie. greatest-slug-ever
 SLUG = r'^[a-z0-9-]+$'
 
-# RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'.
+# RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'
 HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 
 # RegEx pattern to match a year from 1900-2099
