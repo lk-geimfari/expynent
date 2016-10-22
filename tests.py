@@ -86,7 +86,7 @@ class PatternsTestCase(unittest.TestCase):
         html_tag_pattern = self.patterns.HTML_TAG
         htm_tag = '<br></br>'
         self.assertTrue(re.match(html_tag_pattern, htm_tag))
-    
+
     def test_html_js_tag_pattern(self):
         html_js_tag_pattern = self.patterns.HTML_JS_TAG
         html_js_tag = '<IMG onmouseover="window.close()">'
@@ -121,11 +121,6 @@ class PatternsTestCase(unittest.TestCase):
 class CompiledPatternsTestCase(unittest.TestCase):
     def setUp(self):
         self.compiled_patterns = compiled
-
-    def test_email_pattern(self):
-        email_pattern = self.compiled_patterns.email
-        email = 'someuser@example.com'
-        self.assertTrue(email_pattern.match(email))
 
     def test_username_pattern(self):
         username_pattern = self.compiled_patterns.username
