@@ -276,6 +276,9 @@ SLUG = r'^[a-z0-9-]+$'
 # RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'
 HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 
+#Regex pattern to match HTML tags that have javascript events attached to them.
+HTML_JS_TAG = r'<[a-zA-Z][^>]*\son\w+=(\w+|\'[^\']*\'|"[^"]*")[^>]*>'
+
 # RegEx pattern to match a year from 1900-2099
 YEAR = r'^(19|20)\d{2}$'
 
