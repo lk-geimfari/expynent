@@ -300,7 +300,7 @@ LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
 #RegEx pattern to match Indian Phone numbers
-MOBILE_NUMBER = r'\d{10}'
+MOBILE_NUMBER = {'IN': r'\d{10}'}
 
 
 def file_extension(ext=''):
