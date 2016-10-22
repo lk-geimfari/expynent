@@ -56,6 +56,9 @@ else:
 #### Contributing
 Your contributions are always welcome! Please take a look at the [contribution](https://github.com/lk-geimfari/expynent/blob/master/CONTRIBUTING.md) guidelines first.
 
+#### Atention
+This is an **experimental** project and it's mean that we do not guarantee stability.
+
 
 #### Licence 
 [BSD 3-Clause License](https://raw.githubusercontent.com/lk-geimfari/expynent/master/LICENSE)
