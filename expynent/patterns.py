@@ -276,7 +276,7 @@ SLUG = r'^[a-z0-9-]+$'
 # RegEx pattern that matches an HTML tags with closing bracket ie. '<br> </br>'
 HTML_TAG = r'^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$'
 
-#Regex pattern to match HTML tags that have javascript events attached to them.
+# Regex pattern to match HTML tags that have javascript events attached to them
 HTML_JS_TAG = r'<[a-zA-Z][^>]*\son\w+=(\w+|\'[^\']*\'|"[^"]*")[^>]*>'
 
 # RegEx pattern to match a year from 1900-2099
@@ -304,7 +304,7 @@ LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
 
 # List of RegEx patterns for phone numbers by country
 PHONE_NUMBER = {
-    # RegEx pattern to match French phone numbers (with and without country code)
+    # RegEx pattern to match French phone numbers (with & without country code)
     'FR': r'^(?:\+33|0)\d{9}$',
     # RegEx pattern to match Indian Phone numbers
     'IN': r'\d{10}'
