@@ -15,11 +15,6 @@ class PatternsTestCase(unittest.TestCase):
         us_zip = self.patterns.ZIP_CODE['US']
         self.assertTrue(re.match(us_zip, '23414'))
 
-    def test_email_pattern(self):
-        email_pattern = self.patterns.EMAIL
-        email = 'someuser@example.com'
-        self.assertTrue(re.match(email_pattern, email))
-
     def test_file_extension_pattern(self):
         ext = 'py'
         ext_pattern = self.patterns.file_extension(ext)

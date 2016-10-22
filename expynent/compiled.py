@@ -3,7 +3,6 @@ import re
 import expynent
 
 username = re.compile(expynent.USERNAME)
-email = re.compile(expynent.EMAIL)
 uppercase = re.compile(expynent.UPPERCASE)
 credit_card = re.compile(expynent.CREDIT_CARD)
 url = re.compile(expynent.URL)
