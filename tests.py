@@ -86,6 +86,11 @@ class PatternsTestCase(unittest.TestCase):
         html_tag_pattern = self.patterns.HTML_TAG
         htm_tag = '<br></br>'
         self.assertTrue(re.match(html_tag_pattern, htm_tag))
+    
+    def test_html_js_tag_pattern(self):
+        html_js_tag_pattern = self.patterns.HTML_JS_TAG
+        html_js_tag = '<IMG onmouseover="window.close()">'
+        self.assertTrue(re.match(html_js_tag_pattern, html_js_tag))
 
     def test_year_pattern(self):
         year_pattern = self.patterns.YEAR
@@ -182,6 +187,11 @@ class CompiledPatternsTestCase(unittest.TestCase):
         html_tag_pattern = self.compiled_patterns.html_tag
         htm_tag = '<br></br>'
         self.assertTrue(html_tag_pattern.match(htm_tag))
+
+    def test_html_js_tag_pattern(self):
+        html_js_tag_pattern = self.compiled_patterns.html_js_tag
+        html_js_tag = '<IMG onmouseover="window.close()">'
+        self.assertTrue(html_js_tag_pattern.match(html_js_tag))
 
     def test_year_pattern(self):
         year_pattern = self.compiled_patterns.year
