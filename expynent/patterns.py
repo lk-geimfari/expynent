@@ -271,10 +271,15 @@ LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
 LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
+# RegEx pattern to match IRC user strings
+IRC = r'(\S*)!(\S*)@(\S*)'
+
 # List of RegEx patterns for phone numbers by country
 PHONE_NUMBER = {
     # RegEx pattern to match French phone numbers (with & without country code)
     'FR': r'^(?:\+33|0)\d{9}$',
     # RegEx pattern to match Indian Phone numbers
-    'IN': r'\d{10}'
+    'IN': r'\d{10}',
+    # RegEx pattern to match Spanish phone numbers
+    'ES': r'^(?:\+34|0)\d{9}$',
 }
