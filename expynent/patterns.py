@@ -276,5 +276,8 @@ PHONE_NUMBER = {
     # RegEx pattern to match French phone numbers (with & without country code)
     'FR': r'^(?:\+33|0)\d{9}$',
     # RegEx pattern to match Indian Phone numbers
-    'IN': r'\d{10}'
+    'IN': r'\d{10}',
+    # Regex pattern to match phone numbers from the United States
+    'US': r'(?P<countrycode>1?)[\s\(-]{0,2}(?P<areadcode>\d{3})[\s\)-]{0,2}'
+          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})'
 }
