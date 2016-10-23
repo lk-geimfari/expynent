@@ -8,6 +8,7 @@ from expynent import (
 
 
 class PatternsTestCase(unittest.TestCase):
+
     def setUp(self):
         self.patterns = patterns
 
@@ -71,8 +72,23 @@ class PatternsTestCase(unittest.TestCase):
         x = '-66.4214188124611'
         self.assertTrue(re.match(latitude_pattern, x))
 
+    def test_us_phone_number(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        phonenumbers = {
+            'no_seperators': '12345678901',
+            'no_country_code': '2345678901',
+            'mixed_seperators': '1 (234) 567-8901',
+            'space_seperator': '1 234 567 8901',
+            'dash_seperator': '1-234-567-8901',
+        }
+        failmsg = 'Phone number of type %s "%s" failed'
+        for numtype, phonenum in phonenumbers.iteritems():
+            self.assertTrue(re.match(num_pattern, phonenum),
+                            failmsg % (numtype, phonenum))
+
 
 class CompiledPatternsTestCase(unittest.TestCase):
+
     def setUp(self):
         self.compiled_patterns = compiled
 
