@@ -8,6 +8,7 @@ from expynent import (
 
 
 class PatternsTestCase(unittest.TestCase):
+
     def setUp(self):
         self.patterns = patterns
 
@@ -71,8 +72,39 @@ class PatternsTestCase(unittest.TestCase):
         x = '-66.4214188124611'
         self.assertTrue(re.match(latitude_pattern, x))
 
+    def test_us_phone_number_no_seperators(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num = '12345678901'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_us_phone_number_no_country_code(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num = '2345678901'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_us_phone_number_mixed_separator(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num = '1 (234) 567-8901'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_us_phone_number_space_separator(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num = '1 234 567 8901'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_us_phone_number_dash_separator(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num = '1-234-567-8901'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_us_phone_number_negative(self):
+        num_pattern = self.patterns.PHONE_NUMBER['US']
+        invalid_num = '-567-8901'
+        self.assertIsNone(re.match(num_pattern, invalid_num))
+
 
 class CompiledPatternsTestCase(unittest.TestCase):
+
     def setUp(self):
         self.compiled_patterns = compiled
 
