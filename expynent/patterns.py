@@ -280,6 +280,7 @@ PHONE_NUMBER = {
     'FR': r'^(?:\+33|0)\d{9}$',
     # RegEx pattern to match Indian Phone numbers
     'IN': r'\d{10}',
-    # RegEx pattern to match Spanish phone numbers
-    'ES': r'^(?:\+34|0)\d{9}$',
+    # Regex pattern to match phone numbers from the United States
+    'US': r'(?P<countrycode>1?)[\s\(-]{0,2}(?P<areadcode>\d{3})[\s\)-]{0,2}'
+          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})'
 }
