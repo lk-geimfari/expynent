@@ -282,7 +282,7 @@ PHONE_NUMBER = {
     'IN': r'\d{10}',
     # Regex pattern to match phone numbers from the United States
     'US': r'(?P<countrycode>1?)[\s\(-]{0,2}(?P<areadcode>\d{3})[\s\)-]{0,2}'
-          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})'
+          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})',
     # RegEx pattern to match Spanish phone numbers
-    'ES': r'^(?:\+34|0)\d{9}$',
+    'ES': r'^(?:\+34|0)\d{9}$'
 }
