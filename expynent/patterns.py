@@ -271,6 +271,9 @@ LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
 LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
+# RegEx pattern to match IRC user strings
+IRC = r'(\S*)!(\S*)@(\S*)'
+
 # List of RegEx patterns for phone numbers by country
 PHONE_NUMBER = {
     # RegEx pattern to match French phone numbers (with & without country code)
@@ -279,5 +282,7 @@ PHONE_NUMBER = {
     'IN': r'\d{10}',
     # Regex pattern to match phone numbers from the United States
     'US': r'(?P<countrycode>1?)[\s\(-]{0,2}(?P<areadcode>\d{3})[\s\)-]{0,2}'
-          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})'
+          r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})',
+    # RegEx pattern to match Spanish phone numbers
+    'ES': r'^(?:\+34|0)\d{9}$'
 }
