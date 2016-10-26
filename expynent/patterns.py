@@ -287,3 +287,4 @@ PHONE_NUMBER = {
     'ES': r'^(?:\+34|0)\d{9}$'
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$'
+    }
