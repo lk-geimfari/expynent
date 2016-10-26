@@ -285,4 +285,5 @@ PHONE_NUMBER = {
           r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})',
     # RegEx pattern to match Spanish phone numbers
     'ES': r'^(?:\+34|0)\d{9}$'
-}
+    # RegEx pattern to match Taiwan phone numbers
+    'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$'
