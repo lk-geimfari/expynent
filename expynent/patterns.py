@@ -285,4 +285,6 @@ PHONE_NUMBER = {
           r'(?P<phoneline0>\d{3})[\s-]?(?P<phoneline1>\d{4})',
     # RegEx pattern to match Spanish phone numbers
     'ES': r'^(?:\+34|0)\d{9}$'
+    # RegEx pattern to match German phone numbers
+    'DE': r'([(]{0,1}[2-9]\d{2}[)]{0,1}[-_. ]{0,1}[2-9]\d{2}[-_.  ]{0,1}\d{4})'
 }
