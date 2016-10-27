@@ -76,6 +76,16 @@ class PatternsTestCase(unittest.TestCase):
         num_pattern = self.patterns.PHONE_NUMBER['US']
         num = '12345678901'
         self.assertTrue(re.match(num_pattern, num))
+        
+    def test_ni_phone_number_no_seperators(self):
+        num_pattern = self.patterns.PHONE_NUMBER['NI']
+        num = '88888888'
+        self.assertTrue(re.match(num_pattern, num))
+       
+    def test_ni_phone_number_with_country_code(self):
+        num_pattern = self.patterns.PHONE_NUMBER['NI']
+        num = '+50588888888'
+        self.assertTrue(re.match(num_pattern, num))
 
     def test_us_phone_number_no_country_code(self):
         num_pattern = self.patterns.PHONE_NUMBER['US']
