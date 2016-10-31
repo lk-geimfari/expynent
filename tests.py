@@ -110,7 +110,42 @@ class PatternsTestCase(unittest.TestCase):
     def test_tw_phone_number_plus(self):
         num_pattern = self.patterns.PHONE_NUMBER['TW']
         num = '+886912345678'
-        self.assertTrue(re.match(num_pattern, num))    
+        self.assertTrue(re.match(num_pattern, num))   
+
+    def test_tw_license_plate_3_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'AMG-6363'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_2_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '22-1234'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_4_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '5230-RH'
+        self.assertTrue(re.match(plate_pattern, plate))
+    
+    def test_tw_license_plate_3_plus_3(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '297-MAY'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_2_plus_3(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'XD-123'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_3_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '666-XB'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_2_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '01-SA'
+        self.assertTrue(re.match(plate_pattern, plate)) 
 
 
 class CompiledPatternsTestCase(unittest.TestCase):
