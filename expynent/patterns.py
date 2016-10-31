@@ -288,3 +288,9 @@ PHONE_NUMBER = {
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$'
     }
+
+# List of RegEx patterns for license plates
+LICENSE_PLATE = {
+    # Regex pattern to match Taiwanese license plates
+    'TW': r'(^[A-Z0-9]{2,3}-\d{2,4}$)|(^\d{2,3}-[A-Z0-9]{2,3}$)|(^\d{4}-[A-Z0-9]{2}$)|'
+    }
