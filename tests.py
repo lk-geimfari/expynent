@@ -117,7 +117,12 @@ class PatternsTestCase(unittest.TestCase):
         plate = 'AMG-6363'
         self.assertTrue(re.match(plate_pattern, plate))
 
-    def test_tw_license_plate_2_plus_4(self):
+    def test_tw_license_plate_2_letters_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'AR-1234'
+        self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_tw_license_plate_2_digits_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']
         plate = '22-1234'
         self.assertTrue(re.match(plate_pattern, plate))
