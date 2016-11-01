@@ -287,7 +287,9 @@ PHONE_NUMBER = {
     'ES': r'^(?:\+34|0)\d{9}$',
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$',
-    'NI': '(\+?505)?\d{8}'
+    'NI': '(\+?505)?\d{8}',
+    #RegEx pattern to match Austrian phone numbers
+    'AT': r'^(?:\+43|0)\d{4,12}$'
     }
 
 # List of RegEx patterns for license plates
