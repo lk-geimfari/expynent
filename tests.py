@@ -16,6 +16,10 @@ class PatternsTestCase(unittest.TestCase):
         us_zip = self.patterns.ZIP_CODE['US']
         self.assertTrue(re.match(us_zip, '23414'))
 
+    def test_email_address_code_pattern(self):
+        email_example = 'something@gmail.com'
+        self.assertTrue(re.match(self.patterns.EMAIL, email_example))
+
     def test_mac_address_pattern(self):
         mac_pattern = self.patterns.MAC_ADDRESS
         mac = '00:08:C7:1B:8C:02'

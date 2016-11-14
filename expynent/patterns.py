@@ -151,6 +151,9 @@ ZIP_CODE = {
 # RegEx pattern for matching credit card.
 CREDIT_CARD = '[\d]+((-|\s)?[\d]+)+'
 
+# RegEx pattern for matching email address
+EMAIL_ADDRESS = "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
+
 # RegEx pattern for matching IPv4 and IPv6 addresses.
 IP_V4 = r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
 IP_V6 = r"""^
