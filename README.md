@@ -9,7 +9,7 @@
 
 
 
-expynent is a tiny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
+**expynent** is a tiny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
 
 
 
