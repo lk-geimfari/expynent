@@ -11,6 +11,9 @@
 
 **expynent** is a tiny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
 
+## Docs
+[Here](https://github.com/lk-geimfari/expynent/wiki) you can read about basics of `expynent`.
+
 
 
 ## Installation
