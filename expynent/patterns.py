@@ -1,4 +1,6 @@
 # RegEx pattern for matching zip code.
+# Using:
+#     - us_zip = ZIP_CODE['US']
 ZIP_CODE = {
     'AD': 'AD\d{3}',
     'AM': '(37)?\d{4}',
