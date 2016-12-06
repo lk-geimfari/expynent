@@ -160,3 +160,19 @@ class PatternsTestCase(unittest.TestCase):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']
         plate = '01-SA'
         self.assertTrue(re.match(plate_pattern, plate))
+
+    def test_time24h_format(self):
+        pattern = self.patterns.TIME_24H_FORMAT
+        time = '23:45'
+        self.assertTrue(re.match(pattern, time))
+
+        time_2 = '13:04'
+        self.assertTrue(re.match(pattern, time_2))
+
+        time_3 = '09:22'
+        self.assertTrue(re.match(pattern, time_3))
+
+    def test_iso_8601_datetime(self):
+        pattern = self.patterns.ISO_8601_DATETIME
+        datetime = '2014-12-05T12:30:45.123456-05:30'
+        self.assertTrue(re.match(pattern, datetime))

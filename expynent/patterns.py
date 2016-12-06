@@ -257,7 +257,7 @@ MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
 # RegEx pattern for matching a HEX value ie. #a3c113
 HEX_VALUE = r'^#?([a-f0-9]{6}|[a-f0-9]{3})$'
 
-# RegEx pattern that matches a slug ie. greatest-slug-ever
+# RegEx pattern that matches a SLUG ie. greatest-SLUG-ever
 SLUG = r'^[a-z0-9-]+$'
 
 BITCOIN_ADDRESS = r'(?<![a-km-zA-HJ-NP-Z0-9])[13]' \
@@ -266,11 +266,11 @@ BITCOIN_ADDRESS = r'(?<![a-km-zA-HJ-NP-Z0-9])[13]' \
 # RegEx pattern to match Y.Money.
 YANDEX_MONEY = r"\d{14}"
 
-# RegEx pattern to match latitude.
+# RegEx pattern to match LATITUDE.
 LATITUDE = r'^(\+|-)?(?:90(?:(?:\.0{1,14})?)|(?:[0-9]|' \
            r'[1-8][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
-# RegEx pattern to match longitude.
+# RegEx pattern to match LONGITUDE.
 LONGITUDE = r'^(\+|-)?(?:180(?:(?:\.0{1,14})?)|(?:[0-9]|[1-9]' \
             r'[0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,14})?))$'
 
@@ -291,10 +291,17 @@ PHONE_NUMBER = {
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$',
     'NI': '(\+?505)?\d{8}'
-    }
+}
 
 # List of RegEx patterns for license plates
 LICENSE_PLATE = {
     # Regex pattern to match Taiwanese license plates
     'TW': r'(^[A-Z0-9]{2,3}-\d{2,4}$)|(^\d{2,3}-[A-Z0-9]{2,3}$)|(^\d{4}-[A-Z0-9]{2}$)|'
-    }
+}
+
+# RegEx pattern for matching 24 hour time format.
+# Example: 23:00
+TIME_24H_FORMAT = r'(24:00|2[0-3]:[0-5][0-9]|[0-1][0-9]:[0-5][0-9])'
+
+# RegEx pattern for matching datetime in ISO 8601 format.
+ISO_8601_DATETIME = r'^(?P<full>((?P<year>\d{4})([/-]?(?P<mon>(0[1-9])|(1[012]))([/-]?(?P<mday>(0[1-9])|([12]\d)|(3[01])))?)?(?:T(?P<hour>([01][0-9])|(?:2[0123]))(\:?(?P<min>[0-5][0-9])(\:?(?P<sec>[0-5][0-9]([\,\.]\d{1,10})?))?)?(?:Z|([\-+](?:([01][0-9])|(?:2[0123]))(\:?(?:[0-5][0-9]))?))?)?))$'

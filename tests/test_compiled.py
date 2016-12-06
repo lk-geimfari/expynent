@@ -8,12 +8,12 @@ class CompiledPatternsTestCase(unittest.TestCase):
         self.compiled_patterns = compiled
 
     def test_mac_address_pattern(self):
-        mac_pattern = self.compiled_patterns.mac_address
+        mac_pattern = self.compiled_patterns.MAC_ADDRESS
         mac = '00:08:C7:1B:8C:02'
         self.assertTrue(mac_pattern.match(mac))
 
     def test_credit_card_pattern(self):
-        credit_pattern = self.compiled_patterns.credit_card
+        credit_pattern = self.compiled_patterns.CREDIT_CARD
         credit_card = '3519 2073 7960 3241'
         self.assertTrue(credit_pattern.match(credit_card))
 
@@ -24,7 +24,7 @@ class CompiledPatternsTestCase(unittest.TestCase):
         self.assertTrue(credit_pattern.match(credit_card))
 
     def test_ip_v4_pattern(self):
-        ip_v4_pattern = self.compiled_patterns.ip_v4
+        ip_v4_pattern = self.compiled_patterns.IP_V4
         ip_v4 = '209.18.181.23'
         self.assertTrue(ip_v4_pattern.match(ip_v4))
 
@@ -34,31 +34,59 @@ class CompiledPatternsTestCase(unittest.TestCase):
     #     self.assertTrue(ip_v6_pattern.match(ip_v6))
 
     def test_hex_value_pattern(self):
-        hex_pattern = self.compiled_patterns.hex_value
+        hex_pattern = self.compiled_patterns.HEX_VALUE
         hex_value = '#a3c113'
         self.assertTrue(hex_pattern.match(hex_value))
 
     def test_slug_pattern(self):
-        slug_pattern = self.compiled_patterns.slug
+        slug_pattern = self.compiled_patterns.SLUG
         slug = 'greatest-slug-ever'
         self.assertTrue(slug_pattern.match(slug))
 
     def test_bitcoin_pattern(self):
-        bitcoin_pattern = self.compiled_patterns.bitcoin
+        bitcoin_pattern = self.compiled_patterns.BITCOIN_ADDRESS
         address = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT'
         self.assertTrue(bitcoin_pattern.match(address))
 
     def test_yandex_money_pattern(self):
-        ym_pattern = self.compiled_patterns.yandex_money
+        ym_pattern = self.compiled_patterns.YANDEX_MONEY
         ym = '97508675463414'
         self.assertTrue(ym_pattern.match(ym))
 
     def test_longitude_pattern(self):
-        longitude_pattern = self.compiled_patterns.longitude
+        longitude_pattern = self.compiled_patterns.LONGITUDE
         x = '112.1844026051194'
         self.assertTrue(longitude_pattern.match(x))
 
     def test_latitude_pattern(self):
-        latitude_pattern = self.compiled_patterns.latitude
+        latitude_pattern = self.compiled_patterns.LATITUDE
         x = '-66.4214188124611'
         self.assertTrue(latitude_pattern.match(x))
+
+    def test_iso_8601_datetime(self):
+        iso_pattern = self.compiled_patterns.ISO_8601_DATETIME
+        datetime = '2014-12-05T12:30:45.123456-05:30'
+        self.assertTrue(iso_pattern.match(datetime))
+
+        _md = iso_pattern.match(datetime)
+        as_dict = _md.groupdict()
+
+        self.assertIsInstance(as_dict, dict)
+
+        self.assertEqual('2014', as_dict['year'])
+        self.assertEqual('45.123456', as_dict['sec'])
+        self.assertEqual('05', as_dict['mday'])
+        self.assertEqual('30', as_dict['min'])
+        self.assertEqual('12', as_dict['mon'])
+        self.assertEqual('12', as_dict['hour'])
+
+    def test_time24h_format(self):
+        pattern = self.compiled_patterns.TIME_24H_FORMAT
+        time = '23:45'
+        self.assertTrue(pattern.match(time))
+
+        time_2 = '13:04'
+        self.assertTrue(pattern.match(time_2))
+
+        time_3 = '09:22'
+        self.assertTrue(pattern.match(time_3))
