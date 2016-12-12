@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
+[![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
 [![PyPI version](https://badge.fury.io/py/expynent.svg)](https://badge.fury.io/py/expynent)
 
 <p align="center">
@@ -10,6 +11,9 @@
 
 
 **expynent** is a tiny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
+
+## Docs
+[Here](https://github.com/lk-geimfari/expynent/wiki) you can read about basics of `expynent`.
 
 
 
