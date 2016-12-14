@@ -105,3 +105,16 @@ class CompiledPatternsTestCase(unittest.TestCase):
         ]
         for isbn in isbns:
             self.assertTrue(pattern.match(isbn))
+
+    def test_roman_numerals(self):
+        pattern = self.compiled_patterns.ROMAN_NUMERALS
+        numerals = (
+            'X',
+            'XL',
+            'L',
+            'XV',
+            'XX',
+            'XI'
+        )
+        for num in numerals:
+            self.assertTrue(pattern.match(num))

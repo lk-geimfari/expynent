@@ -69,3 +69,13 @@ ISO_8601_DATETIME = re.compile(expynent.ISO_8601_DATETIME)
 #    - 978 1 56619 909 4
 #    - 1 56619 909 3
 ISBN = re.compile(expynent.ISBN)
+
+# RegEx pattern that match binary numbers.
+# Match:
+#    - L
+#    - XL
+#    - XV
+#    - XX
+#    - XI
+#    - etc.
+ROMAN_NUMERALS = re.compile(expynent.ROMAN_NUMERALS)

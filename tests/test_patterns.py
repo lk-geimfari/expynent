@@ -191,3 +191,16 @@ class PatternsTestCase(unittest.TestCase):
         ]
         for isbn in isbns:
             self.assertTrue(re.match(pattern, isbn))
+
+    def test_roman_numerals(self):
+        pattern = self.patterns.ROMAN_NUMERALS
+        numerals = (
+            'X',
+            'XL',
+            'L',
+            'XV',
+            'XX',
+            'XI'
+        )
+        for num in numerals:
+            self.assertTrue(re.match(pattern, num))
