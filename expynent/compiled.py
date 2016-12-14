@@ -14,7 +14,6 @@ CREDIT_CARD = re.compile(expynent.CREDIT_CARD)
 #    - greatest-slug-ever
 SLUG = re.compile(expynent.SLUG)
 
-
 # RegEx pattern that match hex value.
 # Match:
 #    - #a3c113
@@ -45,7 +44,6 @@ YANDEX_MONEY = re.compile(expynent.YANDEX_MONEY)
 #    - 112.1844026051194
 LONGITUDE = re.compile(expynent.LONGITUDE)
 
-
 # RegEx pattern that match latitude
 # Match:
 #    - -66.4214188124611
@@ -60,3 +58,14 @@ TIME_24H_FORMAT = re.compile(expynent.TIME_24H_FORMAT)
 # Match:
 #    - 2014-12-05T12:30:45.123456-05:30
 ISO_8601_DATETIME = re.compile(expynent.ISO_8601_DATETIME)
+
+# RegEx pattern that match ISBN 10 and ISBN 13.
+# Match:
+#    - ISBN-13: 978-1-56619-909-4
+#    - ISBN-13: 978 5 93286 159 2
+#    - 978-1-56619-909-4
+#    - ISBN-10: 1-56619-909-3
+#    - 1-56619-909-3
+#    - 978 1 56619 909 4
+#    - 1 56619 909 3
+ISBN = re.compile(expynent.ISBN)

@@ -90,3 +90,18 @@ class CompiledPatternsTestCase(unittest.TestCase):
 
         time_3 = '09:22'
         self.assertTrue(pattern.match(time_3))
+
+    def test_isbn(self):
+        pattern = self.compiled_patterns.ISBN
+
+        isbns = [
+            "ISBN-13: 978-1-56619-909-4",
+            "ISBN-13: 978 5 93286 159 2",
+            "978-1-56619-909-4",
+            "ISBN-10: 1-56619-909-3",
+            "1-56619-909-3",
+            "978 1 56619 909 4",
+            "1 56619 909 3",
+        ]
+        for isbn in isbns:
+            self.assertTrue(pattern.match(isbn))
