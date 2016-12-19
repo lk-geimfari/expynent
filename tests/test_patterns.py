@@ -204,3 +204,47 @@ class PatternsTestCase(unittest.TestCase):
         )
         for num in numerals:
             self.assertTrue(re.match(pattern, num))
+
+    def test_french_license_plates(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['FR']
+        valid_license_plates = (
+            'AA-001-AA',
+            'AA-555-AA',
+            'AA-999-AA',
+            'AA-001-AB',
+            'AA-001-QQ',
+            'AA-999-AZ',
+            'AA-001-BA',
+            'AA-999-ZZ',
+            'AB-001-AA',
+            'AZ-999-ZZ',
+            'BA-001-AA',
+            'ZZ-999-ZZ',
+            '1 A 00',
+            '999 Z 00',
+            '1 AA 00',
+            '999 PZ 00',
+            '1 QA 00',
+            '9999 ZZ 00',
+            '11 AAA 00',
+            '999 ZZZ 00'
+        )
+
+        invalid_license_plates = (
+            'A-011-DC',
+            'DE-23-DE',
+            'DF-532-3D',
+            '1E-123-FD',
+            'A A 00',
+            '999 4 00',
+            '1 AA B0',
+            '9E9 PZ 00',
+            '1 44 00',
+            '9999 ZZ 0G'
+        )
+
+        for plate in valid_license_plates:
+            self.assertTrue(re.match(plate_pattern, plate))
+
+        for plate in invalid_license_plates:
+            self.assertIsNone(re.match(plate_pattern, plate))

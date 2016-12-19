@@ -298,7 +298,9 @@ PHONE_NUMBER = {
 # List of RegEx patterns for license plates
 LICENSE_PLATE = {
     # Regex pattern to match Taiwanese license plates
-    'TW': r'(^[A-Z0-9]{2,3}-\d{2,4}$)|(^\d{2,3}-[A-Z0-9]{2,3}$)|(^\d{4}-[A-Z0-9]{2}$)|'
+    'TW': r'(^[A-Z0-9]{2,3}-\d{2,4}$)|(^\d{2,3}-[A-Z0-9]{2,3}$)|(^\d{4}-[A-Z0-9]{2}$)|',
+    # Regex pattern to match French license plates
+    'FR': r'(^[A-Z]{2}-\d{3}-[A-Z]{2}$)|(^\d{1,4}\s[A-Z]{1,3}\s\d{2}$)'
 }
 
 # RegEx pattern for matching 24 hour time format.
