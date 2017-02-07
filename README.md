@@ -46,11 +46,11 @@ else:
 ```
 also you can use compiled patterns:
 ```python
-from expynent.compiled import username
+from expynent.compiled import MAC_ADDRESS
 
-u = input('Enter username: ')
+mac = input('Enter MAC address : ')
 
-if username.match(u):
+if MAC_ADDRESS.match(mac):
     print('valid')
 else:
     print('invalid')
