@@ -9,7 +9,7 @@ python:
 install:
   - pip install codecov
 
-script: coverage run -m unittest discover tests
+script: PYTHONPATH=tests coverage run -m unittest discover tests
   
 after_success:
   codecov

@@ -1,6 +1,7 @@
 import re
 import unittest
 from expynent import patterns
+from tests.ipv6_fixtures import IP_V6_DATA
 
 
 class PatternsTestCase(unittest.TestCase):
@@ -36,10 +37,13 @@ class PatternsTestCase(unittest.TestCase):
         ip_v4 = '209.18.181.23'
         self.assertTrue(re.match(ip_v4_pattern, ip_v4))
 
-    # def test_ip_v6_pattern(self):
-    #     ip_v6_pattern = self.patterns.IP_V6
-    #     ip_v6 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
-    #     self.assertTrue(re.match(ip_v6_pattern, ip_v6))
+    def test_ip_v6_pattern(self):
+        ip_v6_pattern = self.patterns.IP_V6
+        for ip_v6, result in IP_V6_DATA.items():
+            if result:
+                self.assertIsNotNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+            else:
+                self.assertIsNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
 
     def test_hex_value_pattern(self):
         hex_pattern = self.patterns.HEX_VALUE

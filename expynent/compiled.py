@@ -24,6 +24,11 @@ HEX_VALUE = re.compile(expynent.HEX_VALUE)
 #    209.18.181.23
 IP_V4 = re.compile(expynent.IP_V4)
 
+# RegEx pattern that match IPv6 address.
+# Match:
+#    2001:0db8:85a3:0000:0000:8a2e:0370:7334
+IP_V6 = re.compile(expynent.IP_V6, re.VERBOSE | re.IGNORECASE | re.DOTALL)
+
 # RegEx pattern that match MAC address.
 # Match:
 #    - 00:08:C7:1B:8C:02
