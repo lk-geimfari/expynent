@@ -328,7 +328,7 @@ ISBN = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]" \
        "{13}$|[0-9X]{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]" \
        "?(?:[0-9]+[- ]?){2}[0-9X]$"
 
-# RegEx pattern that match binary numbers.
+# RegEx pattern that matches roman numerals.
 # Match:
 #    - L
 #    - XL
