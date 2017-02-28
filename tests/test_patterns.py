@@ -125,6 +125,34 @@ class PatternsTestCase(unittest.TestCase):
         num = '+886912345678'
         self.assertTrue(re.match(num_pattern, num))
 
+    def test_dk_phone_number(self):
+        plate_pattern = self.patterns.PHONE_NUMBER['DK']
+
+        base_numbers = [
+            '12 23 45 67',
+            '8765 4321',
+            '12 555 666',
+            '83155621'
+        ]
+        prefixes = [
+            '', '+45', '+45 '
+        ]
+        for base_no in base_numbers:
+            for prefix in prefixes:
+                phone_no = prefix + base_no
+                self.assertTrue( re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no )
+
+        invalid_numbers = [
+            '1234567',
+            '123456789',
+            '1234-5678',
+        ]
+        for base_no in invalid_numbers:
+            for prefix in prefixes:
+                phone_no = prefix + base_no
+                self.assertFalse( re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no )
+
+
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']
         plate = 'AMG-6363'
