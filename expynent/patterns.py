@@ -151,7 +151,14 @@ ZIP_CODE = {
 }
 
 # RegEx pattern for matching credit card.
-CREDIT_CARD = '[\d]+((-|\s)?[\d]+)+'
+# This will accept patterns like:
+# XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX, 
+# ...or the pattern that CREDIT_CARD_STRICT matches.
+CREDIT_CARD = '^(\d{4}[-\s]?){3}\d{4}$'
+
+# RegEx pattern for matching a credit card that must be in the form of:
+# XXXXXXXXXXXX, XXXX XXXX XXXX XXXX, or XXXX-XXXX-XXXX-XXXX  
+CREDIT_CARD_STRICT = '^((\d{4}){3}|(\d{4}-){3}|(\d{4}\s){3})\d{4}$'
 
 # RegEx pattern for matching email address
 EMAIL_ADDRESS = "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"

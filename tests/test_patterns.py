@@ -22,15 +22,40 @@ class PatternsTestCase(unittest.TestCase):
         self.assertTrue(re.match(mac_pattern, mac))
 
     def test_credit_card_pattern(self):
+        credit_strict_pattern = self.patterns.CREDIT_CARD_STRICT
+        valid_pats = set((
+            '3519 2073 7960 3241',
+            '3519-2073-7960-3241',
+            '3519207379603241',
+        ))
+        nonstrict_pats = set((
+            '3519-2073 7960 3241',
+            '3519-2073-7960 3241',
+            '3519 2073-7960 3241',
+            '3519 2073-7960-3241',
+            '3519 2073 7960-3241',
+        ))
+        invalid_pats = set((
+            '1234',
+            '123',
+            '12341234123413245',
+            '1234_1234_1234_1234',
+        ))
+        # Test strict pattern.
+        for validpat in valid_pats:
+            self.assertTrue(re.match(credit_strict_pattern, validpat))
+        # Test non-strict patern.
         credit_pattern = self.patterns.CREDIT_CARD
-        credit_card = '3519 2073 7960 3241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        for validpat in valid_pats.union(nonstrict_pats):
+            self.assertTrue(re.match(credit_pattern, validpat))
 
-        credit_card = '3519-2073-7960-3241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        # Test invalid patterns for strict.
+        for invalidpat in invalid_pats.union(nonstrict_pats):
+            self.assertFalse(re.match(credit_strict_pattern, invalidpat))
 
-        credit_card = '3519207379603241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        # Test invalid patterns for non-strict.
+        for invalidpat in invalid_pats:
+            self.assertFalse(re.match(credit_pattern, invalidpat))
 
     def test_ip_v4_pattern(self):
         ip_v4_pattern = self.patterns.IP_V4
