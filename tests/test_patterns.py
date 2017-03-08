@@ -2,6 +2,7 @@ import re
 import unittest
 from expynent import patterns
 from tests.ipv6_fixtures import IP_V6_DATA
+from tests.ipv4_fixtures import IP_V4_DATA
 
 
 class PatternsTestCase(unittest.TestCase):
@@ -59,8 +60,11 @@ class PatternsTestCase(unittest.TestCase):
 
     def test_ip_v4_pattern(self):
         ip_v4_pattern = self.patterns.IP_V4
-        ip_v4 = '209.18.181.23'
-        self.assertTrue(re.match(ip_v4_pattern, ip_v4))
+        for ip_v4, result in IP_V4_DATA.items():
+            if result:
+                self.assertIsNotNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+            else:
+                self.assertIsNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
 
     def test_ip_v6_pattern(self):
         ip_v6_pattern = self.patterns.IP_V6
