@@ -164,7 +164,8 @@ CREDIT_CARD_STRICT = '^((\d{4}){3}|(\d{4}-){3}|(\d{4}\s){3})\d{4}$'
 EMAIL_ADDRESS = "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
 
 # RegEx pattern for matching IPv4 and IPv6 addresses.
-IP_V4 = r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+IP_V4 = r"^{0}\.{0}\.{0}\.{0}$".format(r"([01]?\d{1,2}|2(5[0-5]|[0-4]\d))")
+
 IP_V6 = r"""^
      \s* # Leading whitespace
      # Zero-width lookaheads to reject too many quartets
