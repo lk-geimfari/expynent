@@ -151,106 +151,114 @@ ZIP_CODE = {
 }
 
 # RegEx pattern for matching credit card.
-CREDIT_CARD = '[\d]+((-|\s)?[\d]+)+'
+# This will accept patterns like:
+# XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX, 
+# ...or the pattern that CREDIT_CARD_STRICT matches.
+CREDIT_CARD = '^(\d{4}[-\s]?){3}\d{4}$'
+
+# RegEx pattern for matching a credit card that must be in the form of:
+# XXXXXXXXXXXX, XXXX XXXX XXXX XXXX, or XXXX-XXXX-XXXX-XXXX  
+CREDIT_CARD_STRICT = '^((\d{4}){3}|(\d{4}-){3}|(\d{4}\s){3})\d{4}$'
 
 # RegEx pattern for matching email address
 EMAIL_ADDRESS = "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
 
 # RegEx pattern for matching IPv4 and IPv6 addresses.
-IP_V4 = r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
-# IP_V6 = r"""^
-#      \s* # Leading whitespace
-#      # Zero-width lookaheads to reject too many quartets
-#      (?:
-#         # 6 quartets, ending IPv4 address; no wildcards
-#         (?:[0-9a-f]{1,4}(?::(?!:))){6}
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 0-5 quartets, wildcard, ending IPv4 address
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 0-4 quartets, wildcard, 0-1 quartets, ending IPv4 address
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4}(?::(?!:)))?
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 0-3 quartets, wildcard, 0-2 quartets, ending IPv4 address
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4}(?::(?!:))){0,2}
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 0-2 quartets, wildcard, 0-3 quartets, ending IPv4 address
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4}(?::(?!:))){0,3}
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 0-1 quartets, wildcard, 0-4 quartets, ending IPv4 address
-#         (?:[0-9a-f]{1,4}){0,1}
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4}(?::(?!:))){0,4}
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # wildcard, 0-5 quartets, ending IPv4 address
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4}(?::(?!:))){0,5}
-#              (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
-#         (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
-#       |
-#         # 8 quartets; no wildcards
-#         (?:[0-9a-f]{1,4}(?::(?!:))){7}[0-9a-f]{1,4}
-#       |
-#         # 0-7 quartets, wildcard
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,6}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#       |
-#         # 0-6 quartets, wildcard, 0-1 quartets
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,5}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:[0-9a-f]{1,4})?
-#       |
-#         # 0-5 quartets, wildcard, 0-2 quartets
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
-#       |
-#         # 0-4 quartets, wildcard, 0-3 quartets
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
-#       |
-#         # 0-3 quartets, wildcard, 0-4 quartets
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
-#       |
-#         # 0-2 quartets, wildcard, 0-5 quartets
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
-#       |
-#         # 0-1 quartets, wildcard, 0-6 quartets
-#         (?:[0-9a-f]{1,4})?
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,5}[0-9a-f]{1,4})?
-#       |
-#         # wildcard, 0-7 quartets
-#         (?:::(?!:))
-#         (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,6}[0-9a-f]{1,4})?
-#      )
-#      (?:/(?:1(?:2[0-7]|[01]\d)|\d\d?))? # optional CIDR routing prefix (0-128)
-#      \s* # Trailing whitespace
-#     $"""
+IP_V4 = r"^{0}\.{0}\.{0}\.{0}$".format(r"([01]?\d{1,2}|2(5[0-5]|[0-4]\d))")
+
+IP_V6 = r"""^
+     \s* # Leading whitespace
+     # Zero-width lookaheads to reject too many quartets
+     (?:
+        # 6 quartets, ending IPv4 address; no wildcards
+        (?:[0-9a-f]{1,4}(?::(?!:))){6}
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 0-5 quartets, wildcard, ending IPv4 address
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
+        (?:::(?!:))
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 0-4 quartets, wildcard, 0-1 quartets, ending IPv4 address
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4}(?::(?!:)))?
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 0-3 quartets, wildcard, 0-2 quartets, ending IPv4 address
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4}(?::(?!:))){0,2}
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 0-2 quartets, wildcard, 0-3 quartets, ending IPv4 address
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4}(?::(?!:))){0,3}
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 0-1 quartets, wildcard, 0-4 quartets, ending IPv4 address
+        (?:[0-9a-f]{1,4}){0,1}
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4}(?::(?!:))){0,4}
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # wildcard, 0-5 quartets, ending IPv4 address
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4}(?::(?!:))){0,5}
+             (?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)
+        (?:\.(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}
+      |
+        # 8 quartets; no wildcards
+        (?:[0-9a-f]{1,4}(?::(?!:))){7}[0-9a-f]{1,4}
+      |
+        # 0-7 quartets, wildcard
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,6}[0-9a-f]{1,4})?
+        (?:::(?!:))
+      |
+        # 0-6 quartets, wildcard, 0-1 quartets
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,5}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:[0-9a-f]{1,4})?
+      |
+        # 0-5 quartets, wildcard, 0-2 quartets
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
+      |
+        # 0-4 quartets, wildcard, 0-3 quartets
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
+      |
+        # 0-3 quartets, wildcard, 0-4 quartets
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,2}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,3}[0-9a-f]{1,4})?
+      |
+        # 0-2 quartets, wildcard, 0-5 quartets
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,1}[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,4}[0-9a-f]{1,4})?
+      |
+        # 0-1 quartets, wildcard, 0-6 quartets
+        (?:[0-9a-f]{1,4})?
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,5}[0-9a-f]{1,4})?
+      |
+        # wildcard, 0-7 quartets
+        (?:::(?!:))
+        (?:(?:[0-9a-f]{1,4}(?::(?!:))){0,6}[0-9a-f]{1,4})?
+     )
+     (?:/(?:1(?:2[0-8]|[01]\d)|\d\d?))? # optional CIDR routing prefix (0-128)
+     \s* # Trailing whitespace
+    $"""
 
 # RegEx pattern for matching MAC-address.
 MAC_ADDRESS = r'^([0-9A-Fa-f]{2}[:-]){5}' \
@@ -292,7 +300,8 @@ PHONE_NUMBER = {
     'ES': r'^(?:\+34|0)\d{9}$',
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$',
-    'NI': '(\+?505)?\d{8}'
+    'NI': '(\+?505)?\d{8}',
+    'DK': r'^(?:\+45)?(\s*\d){8}$'
 }
 
 # List of RegEx patterns for license plates
@@ -328,7 +337,7 @@ ISBN = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]" \
        "{13}$|[0-9X]{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]" \
        "?(?:[0-9]+[- ]?){2}[0-9X]$"
 
-# RegEx pattern that match binary numbers.
+# RegEx pattern that matches roman numerals.
 # Match:
 #    - L
 #    - XL

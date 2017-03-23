@@ -1,6 +1,7 @@
 import unittest
 
 from expynent import compiled
+from tests.ipv6_fixtures import IP_V6_DATA
 
 
 class CompiledPatternsTestCase(unittest.TestCase):
@@ -13,25 +14,53 @@ class CompiledPatternsTestCase(unittest.TestCase):
         self.assertTrue(mac_pattern.match(mac))
 
     def test_credit_card_pattern(self):
+        credit_strict_pattern = self.compiled_patterns.CREDIT_CARD_STRICT
+        valid_pats = set((
+            '3519 2073 7960 3241',
+            '3519-2073-7960-3241',
+            '3519207379603241',
+        ))
+        nonstrict_pats = set((
+            '3519-2073 7960 3241',
+            '3519-2073-7960 3241',
+            '3519 2073-7960 3241',
+            '3519 2073-7960-3241',
+            '3519 2073 7960-3241',
+        ))
+        invalid_pats = set((
+            '1234',
+            '123',
+            '12341234123413245',
+            '1234_1234_1234_1234',
+        ))
+        # Test strict pattern.
+        for validpat in valid_pats:
+            self.assertTrue(credit_strict_pattern.match(validpat))
+        # Test non-strict patern.
         credit_pattern = self.compiled_patterns.CREDIT_CARD
-        credit_card = '3519 2073 7960 3241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        for validpat in valid_pats.union(nonstrict_pats):
+            self.assertTrue(credit_pattern.match(validpat))
 
-        credit_card = '3519-2073-7960-3241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        # Test invalid patterns for strict.
+        for invalidpat in invalid_pats.union(nonstrict_pats):
+            self.assertFalse(credit_strict_pattern.match(invalidpat))
 
-        credit_card = '3519207379603241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        # Test invalid patterns for non-strict.
+        for invalidpat in invalid_pats:
+            self.assertFalse(credit_pattern.match(invalidpat))
 
     def test_ip_v4_pattern(self):
         ip_v4_pattern = self.compiled_patterns.IP_V4
         ip_v4 = '209.18.181.23'
         self.assertTrue(ip_v4_pattern.match(ip_v4))
 
-    # def test_ip_v6_pattern(self):
-    #     ip_v6_pattern = self.compiled_patterns.ip_v6
-    #     ip_v6 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
-    #     self.assertTrue(ip_v6_pattern.match(ip_v6))
+    def test_ip_v6_pattern(self):
+        ip_v6_pattern = self.compiled_patterns.IP_V6
+        for ip_v6, result in IP_V6_DATA.items():
+            if result:
+                self.assertIsNotNone(ip_v6_pattern.match(ip_v6))
+            else:
+                self.assertIsNone(ip_v6_pattern.match(ip_v6))
 
     def test_hex_value_pattern(self):
         hex_pattern = self.compiled_patterns.HEX_VALUE

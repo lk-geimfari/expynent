@@ -1,6 +1,8 @@
 import re
 import unittest
 from expynent import patterns
+from tests.ipv6_fixtures import IP_V6_DATA
+from tests.ipv4_fixtures import IP_V4_DATA
 
 
 class PatternsTestCase(unittest.TestCase):
@@ -21,25 +23,56 @@ class PatternsTestCase(unittest.TestCase):
         self.assertTrue(re.match(mac_pattern, mac))
 
     def test_credit_card_pattern(self):
+        credit_strict_pattern = self.patterns.CREDIT_CARD_STRICT
+        valid_pats = set((
+            '3519 2073 7960 3241',
+            '3519-2073-7960-3241',
+            '3519207379603241',
+        ))
+        nonstrict_pats = set((
+            '3519-2073 7960 3241',
+            '3519-2073-7960 3241',
+            '3519 2073-7960 3241',
+            '3519 2073-7960-3241',
+            '3519 2073 7960-3241',
+        ))
+        invalid_pats = set((
+            '1234',
+            '123',
+            '12341234123413245',
+            '1234_1234_1234_1234',
+        ))
+        # Test strict pattern.
+        for validpat in valid_pats:
+            self.assertTrue(re.match(credit_strict_pattern, validpat))
+        # Test non-strict patern.
         credit_pattern = self.patterns.CREDIT_CARD
-        credit_card = '3519 2073 7960 3241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        for validpat in valid_pats.union(nonstrict_pats):
+            self.assertTrue(re.match(credit_pattern, validpat))
 
-        credit_card = '3519-2073-7960-3241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        # Test invalid patterns for strict.
+        for invalidpat in invalid_pats.union(nonstrict_pats):
+            self.assertFalse(re.match(credit_strict_pattern, invalidpat))
 
-        credit_card = '3519207379603241'
-        self.assertTrue(re.match(credit_pattern, credit_card))
+        # Test invalid patterns for non-strict.
+        for invalidpat in invalid_pats:
+            self.assertFalse(re.match(credit_pattern, invalidpat))
 
     def test_ip_v4_pattern(self):
         ip_v4_pattern = self.patterns.IP_V4
-        ip_v4 = '209.18.181.23'
-        self.assertTrue(re.match(ip_v4_pattern, ip_v4))
+        for ip_v4, result in IP_V4_DATA.items():
+            if result:
+                self.assertIsNotNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+            else:
+                self.assertIsNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
 
-    # def test_ip_v6_pattern(self):
-    #     ip_v6_pattern = self.patterns.IP_V6
-    #     ip_v6 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
-    #     self.assertTrue(re.match(ip_v6_pattern, ip_v6))
+    def test_ip_v6_pattern(self):
+        ip_v6_pattern = self.patterns.IP_V6
+        for ip_v6, result in IP_V6_DATA.items():
+            if result:
+                self.assertIsNotNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+            else:
+                self.assertIsNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
 
     def test_hex_value_pattern(self):
         hex_pattern = self.patterns.HEX_VALUE
@@ -120,6 +153,34 @@ class PatternsTestCase(unittest.TestCase):
         num_pattern = self.patterns.PHONE_NUMBER['TW']
         num = '+886912345678'
         self.assertTrue(re.match(num_pattern, num))
+
+    def test_dk_phone_number(self):
+        plate_pattern = self.patterns.PHONE_NUMBER['DK']
+
+        base_numbers = [
+            '12 23 45 67',
+            '8765 4321',
+            '12 555 666',
+            '83155621'
+        ]
+        prefixes = [
+            '', '+45', '+45 '
+        ]
+        for base_no in base_numbers:
+            for prefix in prefixes:
+                phone_no = prefix + base_no
+                self.assertTrue( re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no )
+
+        invalid_numbers = [
+            '1234567',
+            '123456789',
+            '1234-5678',
+        ]
+        for base_no in invalid_numbers:
+            for prefix in prefixes:
+                phone_no = prefix + base_no
+                self.assertFalse( re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no )
+
 
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']

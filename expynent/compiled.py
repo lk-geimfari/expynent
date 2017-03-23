@@ -2,12 +2,20 @@ import re
 
 import expynent
 
-# RegEx pattern that match credit card number.
+# RegEx pattern that matches a credit card number.
 # Match:
 #    - 3519 2073 7960 3241
 #    - 3519-2073-7960-3241
+#    - 3519 2073-7960 3241
 #    - 3519207379603241
 CREDIT_CARD = re.compile(expynent.CREDIT_CARD)
+
+# RegEx pattern that strictly matches a credit card number.
+# Match:
+#    - 1111-2222-3333-4444
+#    - 1111 2222 3333 4444
+#    - 1111222233334444
+CREDIT_CARD_STRICT = re.compile(expynent.CREDIT_CARD_STRICT)
 
 # RegEx pattern that match slug.
 # Match:
@@ -23,6 +31,11 @@ HEX_VALUE = re.compile(expynent.HEX_VALUE)
 # Match:
 #    209.18.181.23
 IP_V4 = re.compile(expynent.IP_V4)
+
+# RegEx pattern that match IPv6 address.
+# Match:
+#    2001:0db8:85a3:0000:0000:8a2e:0370:7334
+IP_V6 = re.compile(expynent.IP_V6, re.VERBOSE | re.IGNORECASE | re.DOTALL)
 
 # RegEx pattern that match MAC address.
 # Match:
