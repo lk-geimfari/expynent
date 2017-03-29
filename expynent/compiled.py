@@ -92,3 +92,11 @@ ISBN = re.compile(expynent.ISBN)
 #    - XI
 #    - etc.
 ROMAN_NUMERALS = re.compile(expynent.ROMAN_NUMERALS)
+
+# RegEx pattern that matches Ethereum address starts with 0x
+# Match:
+#    - 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe
+#    - 0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f
+#    - 0xfac399e49f5b6867af186390270af252e683b154
+#    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
+ETHEREUM_ADDRESS = re.compile(expynent.ETHEREUM_ADDRESS)
