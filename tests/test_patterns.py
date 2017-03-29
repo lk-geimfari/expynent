@@ -309,3 +309,32 @@ class PatternsTestCase(unittest.TestCase):
 
         for plate in invalid_license_plates:
             self.assertIsNone(re.match(plate_pattern, plate))
+
+    def test_ethereum_address(self):
+        pattern = self.patterns.ETHEREUM_ADDRESS
+
+        valid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
+            "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+            "0xfac399e49f5b6867af186390270af252e683b154",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32",
+            "0xd1ade25ccd3d550a7eb532ac759cac7be09c2719",
+            "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2c9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
+        ]
+        for address in valid_addresses:
+            self.assertTrue(re.match(pattern, address))
+
+        invalid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
+            "0xЯвd8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+            "0xfac399e49f5b6867af186390270af252e683b15ё",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32ff",
+            "0xd1ade25 3d550a7eb532ac759cac7be09c2719",
+            "0xda6:!65fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
+        ]
+        for address in invalid_addresses:
+            self.assertFalse(re.match(pattern, address))
