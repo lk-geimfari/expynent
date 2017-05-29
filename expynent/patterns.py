@@ -354,3 +354,9 @@ ROMAN_NUMERALS = r'^(?=[MDCLXVI])M*(C[MD]|D?C*)(X[CL]|L?X*)(I[XV]|V?I*)$'
 #    - 0xfac399e49f5b6867af186390270af252e683b154
 #    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
 ETHEREUM_ADDRESS = r'^0x([a-zA-Z0-9]{40})$'
+
+# RegEx pattern that matches UUID's.
+# Match:
+#    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
+#    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
+UUID = r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'

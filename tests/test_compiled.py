@@ -174,3 +174,20 @@ class CompiledPatternsTestCase(unittest.TestCase):
         ]
         for address in invalid_addresses:
             self.assertFalse(pattern.match(address))
+
+    def test_uuid(self):
+        pattern = self.compiled_patterns.UUID
+
+        valid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
+            "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
+            ]
+        for uuid in valid_uuids:
+            self.assertTrue(pattern.match(uuid))
+
+        invalid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62",
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
+            ]
+        for uuid in invalid_uuids:
+            self.assertFalse(pattern.match(uuid))

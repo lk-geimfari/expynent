@@ -100,3 +100,9 @@ ROMAN_NUMERALS = re.compile(expynent.ROMAN_NUMERALS)
 #    - 0xfac399e49f5b6867af186390270af252e683b154
 #    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
 ETHEREUM_ADDRESS = re.compile(expynent.ETHEREUM_ADDRESS)
+
+# RegEx pattern that matches UUID's.
+# Match:
+#    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
+#    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
+UUID = re.compile(expynent.UUID)
