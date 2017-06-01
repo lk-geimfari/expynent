@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://github.com/lk-geimfari/expynent/">
-  <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo.png">
+  <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo_2.png">
 </a>
 </p>
 
