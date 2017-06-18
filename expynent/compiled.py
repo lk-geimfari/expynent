@@ -106,3 +106,13 @@ ETHEREUM_ADDRESS = re.compile(expynent.ETHEREUM_ADDRESS)
 #    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
 #    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
 UUID = re.compile(expynent.UUID)
+
+# RegEx pattern that matches float numbers
+# Match:
+#    - 1.1
+#    - 3.1e10
+#    - 1.2e+10
+#    - 1.2e-10
+#    - -1.2e-10
+#    - 5.1E10
+FLOAT_NUMBER = re.compile(expynent.FLOAT_NUMBER)

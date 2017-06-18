@@ -360,3 +360,13 @@ ETHEREUM_ADDRESS = r'^0x([a-zA-Z0-9]{40})$'
 #    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
 #    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
 UUID = r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+
+# RegEx pattern that matches float numbers
+# Match:
+#    - 1.1
+#    - 3.1e10
+#    - 1.2e+10
+#    - 1.2e-10
+#    - -1.2e-10
+#    - 5.1E10
+FLOAT_NUMBER = r'^[+-]?((\d\d*\.?\d*)|(\.\d+))([Ee][+-]?\d+)?$'

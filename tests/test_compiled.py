@@ -191,3 +191,47 @@ class CompiledPatternsTestCase(unittest.TestCase):
             ]
         for uuid in invalid_uuids:
             self.assertFalse(pattern.match(uuid))
+
+    def test_float_number(self):
+        pattern = self.compiled_patterns.FLOAT_NUMBER
+
+        valid_float_numbers = (
+            '2'
+            '15',
+            '1.4',
+            '1.45',
+            '+1.45',
+            '1.3e10',
+            '5e5',
+            '555e4',
+            '555E4',
+            '-555e4',
+            '-555E4',
+            '+1e7',
+            '+.9',
+            '-.9',
+            '-3',
+            '+3'
+        )
+        for number in valid_float_numbers:
+            self.assertTrue(pattern.match(number))
+
+        invalid_float_numbers = (
+            '',
+            'e',
+            'E',
+            '3e',
+            '.1e',
+            '1.1e',
+            '3.5ee',
+            '1.1e1e',
+            '+e3',
+            '+1e',
+            '++1.1',
+            '-+1.1',
+            '-1e',
+            '-',
+            '+'
+        )
+        for number in invalid_float_numbers:
+            self.assertIsNone(pattern.match(number))
