@@ -181,6 +181,29 @@ class PatternsTestCase(unittest.TestCase):
                 phone_no = prefix + base_no
                 self.assertFalse( re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no )
 
+    def test_pl_phone_number_valid(self):
+        num_pattern = self.patterns.PHONE_NUMBER['PL']
+        
+        valid_numbers = ['+48(42)2150000', '+48 422150000', '+48 (42)2150000', '+48 (42) 2150000',
+                         '+48 (42) 215 00 00', '+48 (42) 215-00-00', '422150000', '(42) 2150000',
+                         '(42) 215 00 00', '42 215 00 00', '2150000', '215 00 00', '215-00-00',
+                         '123456789', '123 456 789', '123-456-789']
+        
+        for index, num in enumerate(valid_numbers):
+            num_match = re.match(num_pattern, num)
+            self.assertTrue(num_match, num)
+            if index < 10:
+                self.assertEqual(num_match.group('area'), '42')
+                if index < 6:
+                    self.assertEqual(num_match.group('country'), '+48')
+
+    def test_pl_phone_number_invalid(self):
+        num_pattern = self.patterns.PHONE_NUMBER['PL']
+    
+        invalid_numbers = ['', '123456', '123456789000']
+    
+        for num in invalid_numbers:
+            self.assertIsNone(re.match(num_pattern, num))
 
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']
