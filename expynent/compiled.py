@@ -92,3 +92,5 @@ ISBN = re.compile(expynent.ISBN)
 #    - XI
 #    - etc.
 ROMAN_NUMERALS = re.compile(expynent.ROMAN_NUMERALS)
+
+URL = re.compile(expynent.URL, re.IGNORECASE)

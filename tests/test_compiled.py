@@ -2,6 +2,7 @@ import unittest
 
 from expynent import compiled
 from tests.ipv6_fixtures import IP_V6_DATA
+from tests.url_fixtures import *
 
 
 class CompiledPatternsTestCase(unittest.TestCase):
@@ -41,11 +42,11 @@ class CompiledPatternsTestCase(unittest.TestCase):
         for validpat in valid_pats.union(nonstrict_pats):
             self.assertTrue(credit_pattern.match(validpat))
 
-        # Test invalid patterns for strict.
+        # Test invalid.txt patterns for strict.
         for invalidpat in invalid_pats.union(nonstrict_pats):
             self.assertFalse(credit_strict_pattern.match(invalidpat))
 
-        # Test invalid patterns for non-strict.
+        # Test invalid.txt patterns for non-strict.
         for invalidpat in invalid_pats:
             self.assertFalse(credit_pattern.match(invalidpat))
 
@@ -147,3 +148,12 @@ class CompiledPatternsTestCase(unittest.TestCase):
         )
         for num in numerals:
             self.assertTrue(pattern.match(num))
+
+    def test_url(self):
+        pattern = self.compiled_patterns.URL
+
+        for url in VALID_URLS:
+            self.assertTrue(pattern.match(url))
+
+        for invalid_url in INVALID_URLS:
+            self.assertFalse(pattern.match(invalid_url))

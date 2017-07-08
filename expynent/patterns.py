@@ -346,3 +346,18 @@ ISBN = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]" \
 #    - XI
 #    - etc.
 ROMAN_NUMERALS = r'^(?=[MDCLXVI])M*(C[MD]|D?C*)(X[CL]|L?X*)(I[XV]|V?I*)$'
+
+# http:// or https://
+# domain
+# localhost
+# ipv4
+# ipv6
+# optional port
+# This is regular expression from Django Web Framework
+URL = r'^(?:http|ftp)s?://' \
+      r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' \
+      r'localhost|' \
+      r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|' \
+      r'\[?[A-F0-9]*:[A-F0-9:]+\]?)' \
+      r'(?::\d+)?' \
+      r'(?:/?|[/?]\S+)$'

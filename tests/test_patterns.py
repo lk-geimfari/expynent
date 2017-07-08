@@ -3,6 +3,7 @@ import unittest
 from expynent import patterns
 from tests.ipv6_fixtures import IP_V6_DATA
 from tests.ipv4_fixtures import IP_V4_DATA
+from tests.url_fixtures import VALID_URLS, INVALID_URLS
 
 
 class PatternsTestCase(unittest.TestCase):
@@ -50,11 +51,11 @@ class PatternsTestCase(unittest.TestCase):
         for validpat in valid_pats.union(nonstrict_pats):
             self.assertTrue(re.match(credit_pattern, validpat))
 
-        # Test invalid patterns for strict.
+        # Test invalid.txt patterns for strict.
         for invalidpat in invalid_pats.union(nonstrict_pats):
             self.assertFalse(re.match(credit_strict_pattern, invalidpat))
 
-        # Test invalid patterns for non-strict.
+        # Test invalid.txt patterns for non-strict.
         for invalidpat in invalid_pats:
             self.assertFalse(re.match(credit_pattern, invalidpat))
 
@@ -169,7 +170,7 @@ class PatternsTestCase(unittest.TestCase):
         for base_no in base_numbers:
             for prefix in prefixes:
                 phone_no = prefix + base_no
-                self.assertTrue( re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no )
+                self.assertTrue(re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no)
 
         invalid_numbers = [
             '1234567',
@@ -179,8 +180,7 @@ class PatternsTestCase(unittest.TestCase):
         for base_no in invalid_numbers:
             for prefix in prefixes:
                 phone_no = prefix + base_no
-                self.assertFalse( re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no )
-
+                self.assertFalse(re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no)
 
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']

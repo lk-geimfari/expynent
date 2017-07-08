@@ -314,7 +314,7 @@ IP_V6_DATA = {
     "0:0::": True,
     "0::": True,
 
-    # New invalid from Aeron
+    # New invalid.txt from Aeron
     # Invalid data
     "XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX": False,
 

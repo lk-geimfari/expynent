@@ -45,14 +45,17 @@ else:
 ```
 also you can use compiled patterns:
 ```python
-from expynent.compiled import MAC_ADDRESS
+from expynent.compiled import URL
 
-mac = input('Enter MAC address : ')
+url = 'http://foo.com/blah_blah_(wikipedia)_(again)'
 
-if MAC_ADDRESS.match(mac):
+if URL.match(url):
     print('valid')
 else:
     print('invalid')
+    
+# Output:
+'valid'
 ```
 
 
