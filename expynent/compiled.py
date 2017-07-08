@@ -94,3 +94,27 @@ ISBN = re.compile(expynent.ISBN)
 ROMAN_NUMERALS = re.compile(expynent.ROMAN_NUMERALS)
 
 URL = re.compile(expynent.URL, re.IGNORECASE)
+
+# RegEx pattern that matches Ethereum address starts with 0x
+# Match:
+#    - 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe
+#    - 0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f
+#    - 0xfac399e49f5b6867af186390270af252e683b154
+#    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
+ETHEREUM_ADDRESS = re.compile(expynent.ETHEREUM_ADDRESS)
+
+# RegEx pattern that matches UUID's.
+# Match:
+#    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
+#    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
+UUID = re.compile(expynent.UUID)
+
+# RegEx pattern that matches float numbers
+# Match:
+#    - 1.1
+#    - 3.1e10
+#    - 1.2e+10
+#    - 1.2e-10
+#    - -1.2e-10
+#    - 5.1E10
+FLOAT_NUMBER = re.compile(expynent.FLOAT_NUMBER)

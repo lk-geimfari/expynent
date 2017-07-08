@@ -157,3 +157,91 @@ class CompiledPatternsTestCase(unittest.TestCase):
 
         for invalid_url in INVALID_URLS:
             self.assertFalse(pattern.match(invalid_url))
+
+    def test_ethereum_address(self):
+        pattern = self.compiled_patterns.ETHEREUM_ADDRESS
+
+        valid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
+            "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+            "0xfac399e49f5b6867af186390270af252e683b154",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32",
+            "0xd1ade25ccd3d550a7eb532ac759cac7be09c2719",
+            "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2c9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
+        ]
+        for address in valid_addresses:
+            self.assertTrue(pattern.match(address))
+
+        invalid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32ff",
+            "0xd1ade25 3d550a7eb532ac759cac7be09c2719",
+            "0xda6:!65fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
+        ]
+        for address in invalid_addresses:
+            self.assertFalse(pattern.match(address))
+
+    def test_uuid(self):
+        pattern = self.compiled_patterns.UUID
+
+        valid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
+            "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
+        ]
+        for uuid in valid_uuids:
+            self.assertTrue(pattern.match(uuid))
+
+        invalid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62",
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
+        ]
+        for uuid in invalid_uuids:
+            self.assertFalse(pattern.match(uuid))
+
+    def test_float_number(self):
+        pattern = self.compiled_patterns.FLOAT_NUMBER
+
+        valid_float_numbers = (
+            '2'
+            '15',
+            '1.4',
+            '1.45',
+            '+1.45',
+            '1.3e10',
+            '5e5',
+            '555e4',
+            '555E4',
+            '-555e4',
+            '-555E4',
+            '+1e7',
+            '+.9',
+            '-.9',
+            '-3',
+            '+3'
+        )
+        for number in valid_float_numbers:
+            self.assertTrue(pattern.match(number))
+
+        invalid_float_numbers = (
+            '',
+            'e',
+            'E',
+            '3e',
+            '.1e',
+            '1.1e',
+            '3.5ee',
+            '1.1e1e',
+            '+e3',
+            '+1e',
+            '++1.1',
+            '-+1.1',
+            '-1e',
+            '-',
+            '+'
+        )
+        for number in invalid_float_numbers:
+            self.assertIsNone(pattern.match(number))

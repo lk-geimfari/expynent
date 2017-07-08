@@ -301,7 +301,10 @@ PHONE_NUMBER = {
     # RegEx pattern to match Taiwan phone numbers
     'TW': r'^(?:\+886|0)((?:9\d{8})|(?:[2-8]\d{7,8}))$',
     'NI': '(\+?505)?\d{8}',
-    'DK': r'^(?:\+45)?(\s*\d){8}$'
+    'DK': r'^(?:\+45)?(\s*\d){8}$',
+    # RegeEx pattern to match Polish phone numbers (both geographic and mobile ones)
+    'PL': r'^(?P<country>\+?48)?\W*\(?(?P<area>\d{2})?\)?\W*'
+          r'(?P<phone>\d{3}(?:\W*(?:\d{2}|\d{3})){2})$'
 }
 
 # List of RegEx patterns for license plates
@@ -361,3 +364,27 @@ URL = r'^(?:http|ftp)s?://' \
       r'\[?[A-F0-9]*:[A-F0-9:]+\]?)' \
       r'(?::\d+)?' \
       r'(?:/?|[/?]\S+)$'
+
+# RegEx pattern that matches Ethereum address starts with 0x
+# Match:
+#    - 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe
+#    - 0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f
+#    - 0xfac399e49f5b6867af186390270af252e683b154
+#    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
+ETHEREUM_ADDRESS = r'^0x([a-zA-Z0-9]{40})$'
+
+# RegEx pattern that matches UUID's.
+# Match:
+#    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
+#    - 54DE7EA8-E01B-43C9-AD38-382D9EFF62EF
+UUID = r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+
+# RegEx pattern that matches float numbers
+# Match:
+#    - 1.1
+#    - 3.1e10
+#    - 1.2e+10
+#    - 1.2e-10
+#    - -1.2e-10
+#    - 5.1E10
+FLOAT_NUMBER = r'^[+-]?((\d\d*\.?\d*)|(\.\d+))([Ee][+-]?\d+)?$'
