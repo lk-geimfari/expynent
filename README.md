@@ -55,8 +55,7 @@ if URL.match(url):
 else:
     print('invalid')
     
-# Output:
-'valid'
+# Output: 'valid'
 ```
 
 
