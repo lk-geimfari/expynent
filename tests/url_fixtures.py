@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 INVALID_URLS = [
     'http://',
     'http://.',
@@ -38,7 +40,7 @@ VALID_URLS = [
     'http://142.42.1.1:8080/',
     'http://foo.com/blah_(wikipedia)#cite-132',
     'http://foo.com/blah_(wikipedia)_blah#cite-1',
-    'http://foo.com/unicode_(✪)_in_parens',
+    u'http://foo.com/unicode_(✪)_in_parens',
     'http://foo.com/(something)?after=parens',
     'http://sub.damowmow.com/',
     'http://code.google.com/events/#&product=browser',
