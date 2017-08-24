@@ -206,234 +206,218 @@ class PatternsTestCase(unittest.TestCase):
         for num in invalid_numbers:
             self.assertIsNone(re.match(num_pattern, num))
 
-
-def test_tw_license_plate_3_plus_4(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = 'AMG-6363'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_2_letters_plus_4(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = 'AR-1234'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_2_digits_plus_4(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = '22-1234'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_4_plus_2(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = '5230-RH'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_3_plus_3(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = '297-MAY'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_2_plus_3(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = 'XD-123'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_3_plus_2(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = '666-XB'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_tw_license_plate_2_plus_2(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['TW']
-    plate = '01-SA'
-    self.assertTrue(re.match(plate_pattern, plate))
-
-
-def test_time24h_format(self):
-    pattern = self.patterns.TIME_24H_FORMAT
-    time = '23:45'
-    self.assertTrue(re.match(pattern, time))
-
-    time_2 = '13:04'
-    self.assertTrue(re.match(pattern, time_2))
-
-    time_3 = '09:22'
-    self.assertTrue(re.match(pattern, time_3))
-
-
-def test_iso_8601_datetime(self):
-    pattern = self.patterns.ISO_8601_DATETIME
-    datetime = '2014-12-05T12:30:45.123456-05:30'
-    self.assertTrue(re.match(pattern, datetime))
-
-
-def test_isbn(self):
-    pattern = self.patterns.ISBN
-
-    isbns = [
-        "ISBN-13: 978-1-56619-909-4",
-        "ISBN-13: 978 5 93286 159 2",
-        "978-1-56619-909-4",
-        "ISBN-10: 1-56619-909-3",
-        "1-56619-909-3",
-        "978 1 56619 909 4",
-        "1 56619 909 3",
-    ]
-    for isbn in isbns:
-        self.assertTrue(re.match(pattern, isbn))
-
-
-def test_roman_numerals(self):
-    pattern = self.patterns.ROMAN_NUMERALS
-    numerals = (
-        'X',
-        'XL',
-        'L',
-        'XV',
-        'XX',
-        'XI'
-    )
-    for num in numerals:
-        self.assertTrue(re.match(pattern, num))
-
-
-def test_french_license_plates(self):
-    plate_pattern = self.patterns.LICENSE_PLATE['FR']
-    valid_license_plates = (
-        'AA-001-AA',
-        'AA-555-AA',
-        'AA-999-AA',
-        'AA-001-AB',
-        'AA-001-QQ',
-        'AA-999-AZ',
-        'AA-001-BA',
-        'AA-999-ZZ',
-        'AB-001-AA',
-        'AZ-999-ZZ',
-        'BA-001-AA',
-        'ZZ-999-ZZ',
-        '1 A 00',
-        '999 Z 00',
-        '1 AA 00',
-        '999 PZ 00',
-        '1 QA 00',
-        '9999 ZZ 00',
-        '11 AAA 00',
-        '999 ZZZ 00'
-    )
-
-    invalid_license_plates = (
-        'A-011-DC',
-        'DE-23-DE',
-        'DF-532-3D',
-        '1E-123-FD',
-        'A A 00',
-        '999 4 00',
-        '1 AA B0',
-        '9E9 PZ 00',
-        '1 44 00',
-        '9999 ZZ 0G'
-    )
-
-    for plate in valid_license_plates:
+    def test_tw_license_plate_3_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'AMG-6363'
         self.assertTrue(re.match(plate_pattern, plate))
 
-    for plate in invalid_license_plates:
-        self.assertIsNone(re.match(plate_pattern, plate))
+    def test_tw_license_plate_2_letters_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'AR-1234'
+        self.assertTrue(re.match(plate_pattern, plate))
 
+    def test_tw_license_plate_2_digits_plus_4(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '22-1234'
+        self.assertTrue(re.match(plate_pattern, plate))
 
-def test_ethereum_address(self):
-    pattern = self.patterns.ETHEREUM_ADDRESS
+    def test_tw_license_plate_4_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '5230-RH'
+        self.assertTrue(re.match(plate_pattern, plate))
 
-    valid_addresses = [
-        "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
-        "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
-        "0xfac399e49f5b6867af186390270af252e683b154",
-        "0x85fc71ecffb0703a650f05263a3c1b0548092f32",
-        "0xd1ade25ccd3d550a7eb532ac759cac7be09c2719",
-        "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
-        "0xe470b1a7d2c9c5c6f03bbaa8fa20db6d404a0c32",
-        "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
-    ]
-    for address in valid_addresses:
-        self.assertTrue(re.match(pattern, address))
+    def test_tw_license_plate_3_plus_3(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '297-MAY'
+        self.assertTrue(re.match(plate_pattern, plate))
 
-    invalid_addresses = [
-        "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
-        "0x85fc71ecffb0703a650f05263a3c1b0548092f32ff",
-        "0xd1ade25 3d550a7eb532ac759cac7be09c2719",
-        "0xda6:!65fc30803cb1fb7e6d86691e20b1826dee0",
-        "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
-        "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
-    ]
-    for address in invalid_addresses:
-        self.assertFalse(re.match(pattern, address))
+    def test_tw_license_plate_2_plus_3(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = 'XD-123'
+        self.assertTrue(re.match(plate_pattern, plate))
 
+    def test_tw_license_plate_3_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '666-XB'
+        self.assertTrue(re.match(plate_pattern, plate))
 
-def test_uuid(self):
-    pattern = self.patterns.UUID
+    def test_tw_license_plate_2_plus_2(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate = '01-SA'
+        self.assertTrue(re.match(plate_pattern, plate))
 
-    valid_uuids = [
-        "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
-        "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
-    ]
-    for uuid in valid_uuids:
-        self.assertTrue(re.match(pattern, uuid))
+    def test_time24h_format(self):
+        pattern = self.patterns.TIME_24H_FORMAT
+        time = '23:45'
+        self.assertTrue(re.match(pattern, time))
 
-    invalid_uuids = [
-        "54de7ea8-e01b-43c9-ad38-382d9e5f62",
-        "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
-    ]
-    for uuid in invalid_uuids:
-        self.assertFalse(re.match(pattern, uuid))
+        time_2 = '13:04'
+        self.assertTrue(re.match(pattern, time_2))
 
+        time_3 = '09:22'
+        self.assertTrue(re.match(pattern, time_3))
 
-def test_float_number(self):
-    float_number_pattern = self.patterns.FLOAT_NUMBER
+    def test_iso_8601_datetime(self):
+        pattern = self.patterns.ISO_8601_DATETIME
+        datetime = '2014-12-05T12:30:45.123456-05:30'
+        self.assertTrue(re.match(pattern, datetime))
 
-    valid_float_numbers = (
-        '2'
-        '15',
-        '1.4',
-        '1.45',
-        '+1.45',
-        '1.3e10',
-        '5e5',
-        '555e4',
-        '555E4',
-        '-555e4',
-        '-555E4',
-        '+1e7',
-        '+.9',
-        '-.9',
-        '-3',
-        '+3'
-    )
-    for number in valid_float_numbers:
-        self.assertTrue(re.match(float_number_pattern, number))
+    def test_isbn(self):
+        pattern = self.patterns.ISBN
 
-    invalid_float_numbers = (
-        '',
-        'e',
-        'E',
-        '3e',
-        '.1e',
-        '1.1e',
-        '3.5ee',
-        '1.1e1e',
-        '+e3',
-        '+1e',
-        '++1.1',
-        '-+1.1',
-        '-1e',
-        '-',
-        '+'
-    )
-    for number in invalid_float_numbers:
-        self.assertIsNone(re.match(float_number_pattern, number))
+        isbns = [
+            "ISBN-13: 978-1-56619-909-4",
+            "ISBN-13: 978 5 93286 159 2",
+            "978-1-56619-909-4",
+            "ISBN-10: 1-56619-909-3",
+            "1-56619-909-3",
+            "978 1 56619 909 4",
+            "1 56619 909 3",
+        ]
+        for isbn in isbns:
+            self.assertTrue(re.match(pattern, isbn))
+
+    def test_roman_numerals(self):
+        pattern = self.patterns.ROMAN_NUMERALS
+        numerals = (
+            'X',
+            'XL',
+            'L',
+            'XV',
+            'XX',
+            'XI'
+        )
+        for num in numerals:
+            self.assertTrue(re.match(pattern, num))
+
+    def test_french_license_plates(self):
+        plate_pattern = self.patterns.LICENSE_PLATE['FR']
+        valid_license_plates = (
+            'AA-001-AA',
+            'AA-555-AA',
+            'AA-999-AA',
+            'AA-001-AB',
+            'AA-001-QQ',
+            'AA-999-AZ',
+            'AA-001-BA',
+            'AA-999-ZZ',
+            'AB-001-AA',
+            'AZ-999-ZZ',
+            'BA-001-AA',
+            'ZZ-999-ZZ',
+            '1 A 00',
+            '999 Z 00',
+            '1 AA 00',
+            '999 PZ 00',
+            '1 QA 00',
+            '9999 ZZ 00',
+            '11 AAA 00',
+            '999 ZZZ 00'
+        )
+
+        invalid_license_plates = (
+            'A-011-DC',
+            'DE-23-DE',
+            'DF-532-3D',
+            '1E-123-FD',
+            'A A 00',
+            '999 4 00',
+            '1 AA B0',
+            '9E9 PZ 00',
+            '1 44 00',
+            '9999 ZZ 0G'
+        )
+
+        for plate in valid_license_plates:
+            self.assertTrue(re.match(plate_pattern, plate))
+
+        for plate in invalid_license_plates:
+            self.assertIsNone(re.match(plate_pattern, plate))
+
+    def test_ethereum_address(self):
+        pattern = self.patterns.ETHEREUM_ADDRESS
+
+        valid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
+            "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+            "0xfac399e49f5b6867af186390270af252e683b154",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32",
+            "0xd1ade25ccd3d550a7eb532ac759cac7be09c2719",
+            "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2c9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
+        ]
+        for address in valid_addresses:
+            self.assertTrue(re.match(pattern, address))
+
+        invalid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32ff",
+            "0xd1ade25 3d550a7eb532ac759cac7be09c2719",
+            "0xda6:!65fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
+        ]
+        for address in invalid_addresses:
+            self.assertFalse(re.match(pattern, address))
+
+    def test_uuid(self):
+        pattern = self.patterns.UUID
+
+        valid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
+            "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
+        ]
+        for uuid in valid_uuids:
+            self.assertTrue(re.match(pattern, uuid))
+
+        invalid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62",
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
+        ]
+        for uuid in invalid_uuids:
+            self.assertFalse(re.match(pattern, uuid))
+
+    def test_float_number(self):
+        float_number_pattern = self.patterns.FLOAT_NUMBER
+
+        valid_float_numbers = (
+            '2'
+            '15',
+            '1.4',
+            '1.45',
+            '+1.45',
+            '1.3e10',
+            '5e5',
+            '555e4',
+            '555E4',
+            '-555e4',
+            '-555E4',
+            '+1e7',
+            '+.9',
+            '-.9',
+            '-3',
+            '+3'
+        )
+        for number in valid_float_numbers:
+            self.assertTrue(re.match(float_number_pattern, number))
+
+        invalid_float_numbers = (
+            '',
+            'e',
+            'E',
+            '3e',
+            '.1e',
+            '1.1e',
+            '3.5ee',
+            '1.1e1e',
+            '+e3',
+            '+1e',
+            '++1.1',
+            '-+1.1',
+            '-1e',
+            '-',
+            '+'
+        )
+        for number in invalid_float_numbers:
+            self.assertIsNone(re.match(float_number_pattern, number))

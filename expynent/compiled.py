@@ -3,7 +3,8 @@ Compiled versions of constants found in expynent.patterns
 """
 import re
 
-import expynent.patterns
+from expynent import patterns
+from expynent.utils import is_private
 
 
 def compile_patterns_in_dictionary(dictionary):
@@ -20,13 +21,15 @@ def compile_patterns_in_dictionary(dictionary):
 
 
 # Handle special cases i.e. patterns that must be compiled with specific flags
-IP_V6 = re.compile(expynent.patterns.IP_V6, re.VERBOSE | re.IGNORECASE | re.DOTALL)
-URL = re.compile(expynent.patterns.URL, re.IGNORECASE)
+IP_V6 = re.compile(patterns.IP_V6, re.VERBOSE | re.IGNORECASE | re.DOTALL)
+URL = re.compile(patterns.URL, re.IGNORECASE)
+
+__SPECIAL_CASES__ = ('IP_V6', 'URL')
 
 # get pattern constants from expynent.patterns
 # filter out patterns that begin with underscores and those that are already compiled
-PATTERNS = tuple((pattern, getattr(expynent.patterns, pattern)) for pattern in dir(expynent.patterns)
-                 if not pattern.startswith('_') and pattern not in ('IP_V6', 'URL'))
+PATTERNS = tuple((pattern, getattr(patterns, pattern)) for pattern in dir(patterns)
+                 if not is_private(pattern) and pattern not in __SPECIAL_CASES__)
 
 # Programmatically compile regex patterns and put them in the global scope
 __g = globals()
