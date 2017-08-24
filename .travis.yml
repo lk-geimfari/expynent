@@ -14,3 +14,11 @@ script: PYTHONPATH=tests coverage run -m unittest discover tests
   
 after_success:
   codecov
+
+deploy:
+  provider: pypi
+  user: lk-geimfari
+  password: $SECURE_PASS
+  on:
+    branch: master
+    tags: true
