@@ -150,7 +150,7 @@ ZIP_CODE = {
     'ZM': '\d{5}'
 }
 
-# RegEx pattern for matching credit card.
+# Pattern to match credit card.
 # This will accept patterns like:
 # XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX, 
 # ...or the pattern that CREDIT_CARD_STRICT matches.
