@@ -116,3 +116,6 @@ UUID = re.compile(expynent.UUID)
 #    - -1.2e-10
 #    - 5.1E10
 FLOAT_NUMBER = re.compile(expynent.FLOAT_NUMBER)
+
+# RegEx pattern to match PESEL
+PESEL = re.compile(expynent.PESEL)

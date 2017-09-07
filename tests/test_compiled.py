@@ -235,3 +235,12 @@ class CompiledPatternsTestCase(unittest.TestCase):
         )
         for number in invalid_float_numbers:
             self.assertIsNone(pattern.match(number))
+
+    def test_pesel(self):
+        pattern = self.compiled_patterns.PESEL
+        
+        self.assertTrue(pattern.match('44051401458'))
+        
+        invalid_pesels = ['44751401458', '4475140145', '447514014580']
+        for pesel in invalid_pesels:
+            self.assertFalse(pattern.match(pesel))
