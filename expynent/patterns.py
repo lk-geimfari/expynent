@@ -289,6 +289,8 @@ IRC = r'(\S*)!(\S*)@(\S*)'
 
 # List of RegEx patterns for phone numbers by country
 PHONE_NUMBER = {
+    # RegEx pattern to match Bangladeshi phone number (mobile ones)
+    'BD': r'^(?:\+?88)?[\s -]?01[\s -]?[15-9][\s -]?\d{8}$',
     # RegEx pattern to match French phone numbers (with & without country code)
     'FR': r'^(?:\+33|0)\d{9}$',
     # RegEx pattern to match Indian Phone numbers
