@@ -1,20 +1,20 @@
+<p align="center">
+<a href="https://github.com/lk-geimfari/expynent/">
+  <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo_2.png">
+</a>
+</p>
+
+------
+
 [![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
 [![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
 [![PyPI version](https://badge.fury.io/py/expynent.svg)](https://badge.fury.io/py/expynent)
 
-<p align="center">
-<a href="https://github.com/lk-geimfari/expynent/">
-  <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo.png">
-</a>
-</p>
 
-
-
-**expynent** is a tiny library that provides RegEx patterns. This can be useful if you don't want to write regular expression manually.
+**Expynent** is a tiny library that provides regular expression patterns. This can be useful if you don't want to write regular expression manually. Also you can use this library as [fixture](https://docs.pytest.org/en/latest/fixture.html) for testing framework like a [py.test](https://docs.pytest.org/en/latest/).
 
 ## Docs
 [Here](https://github.com/lk-geimfari/expynent/wiki) you can read about basics of `expynent`.
-
 
 
 ## Installation
@@ -46,14 +46,16 @@ else:
 ```
 also you can use compiled patterns:
 ```python
-from expynent.compiled import username
+from expynent.compiled import URL
 
-u = input('Enter username: ')
+url = 'http://foo.com/blah_blah_(wikipedia)_(again)'
 
-if username.match(u):
+if URL.match(url):
     print('valid')
 else:
     print('invalid')
+    
+# Output: 'valid'
 ```
 
 

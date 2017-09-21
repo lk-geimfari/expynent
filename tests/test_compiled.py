@@ -1,6 +1,8 @@
 import unittest
 
 from expynent import compiled
+from tests.ipv6_fixtures import IP_V6_DATA
+from tests.url_fixtures import *
 
 
 class CompiledPatternsTestCase(unittest.TestCase):
@@ -13,25 +15,53 @@ class CompiledPatternsTestCase(unittest.TestCase):
         self.assertTrue(mac_pattern.match(mac))
 
     def test_credit_card_pattern(self):
+        credit_strict_pattern = self.compiled_patterns.CREDIT_CARD_STRICT
+        valid_pats = set((
+            '3519 2073 7960 3241',
+            '3519-2073-7960-3241',
+            '3519207379603241',
+        ))
+        nonstrict_pats = set((
+            '3519-2073 7960 3241',
+            '3519-2073-7960 3241',
+            '3519 2073-7960 3241',
+            '3519 2073-7960-3241',
+            '3519 2073 7960-3241',
+        ))
+        invalid_pats = set((
+            '1234',
+            '123',
+            '12341234123413245',
+            '1234_1234_1234_1234',
+        ))
+        # Test strict pattern.
+        for validpat in valid_pats:
+            self.assertTrue(credit_strict_pattern.match(validpat))
+        # Test non-strict patern.
         credit_pattern = self.compiled_patterns.CREDIT_CARD
-        credit_card = '3519 2073 7960 3241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        for validpat in valid_pats.union(nonstrict_pats):
+            self.assertTrue(credit_pattern.match(validpat))
 
-        credit_card = '3519-2073-7960-3241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        # Test invalid.txt patterns for strict.
+        for invalidpat in invalid_pats.union(nonstrict_pats):
+            self.assertFalse(credit_strict_pattern.match(invalidpat))
 
-        credit_card = '3519207379603241'
-        self.assertTrue(credit_pattern.match(credit_card))
+        # Test invalid.txt patterns for non-strict.
+        for invalidpat in invalid_pats:
+            self.assertFalse(credit_pattern.match(invalidpat))
 
     def test_ip_v4_pattern(self):
         ip_v4_pattern = self.compiled_patterns.IP_V4
         ip_v4 = '209.18.181.23'
         self.assertTrue(ip_v4_pattern.match(ip_v4))
 
-    # def test_ip_v6_pattern(self):
-    #     ip_v6_pattern = self.compiled_patterns.ip_v6
-    #     ip_v6 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
-    #     self.assertTrue(ip_v6_pattern.match(ip_v6))
+    def test_ip_v6_pattern(self):
+        ip_v6_pattern = self.compiled_patterns.IP_V6
+        for ip_v6, result in IP_V6_DATA.items():
+            if result:
+                self.assertIsNotNone(ip_v6_pattern.match(ip_v6))
+            else:
+                self.assertIsNone(ip_v6_pattern.match(ip_v6))
 
     def test_hex_value_pattern(self):
         hex_pattern = self.compiled_patterns.HEX_VALUE
@@ -118,3 +148,110 @@ class CompiledPatternsTestCase(unittest.TestCase):
         )
         for num in numerals:
             self.assertTrue(pattern.match(num))
+
+    def test_url(self):
+        pattern = self.compiled_patterns.URL
+
+        for url in VALID_URLS:
+            self.assertTrue(pattern.match(url))
+
+        for invalid_url in INVALID_URLS:
+            self.assertFalse(pattern.match(invalid_url))
+
+    def test_ethereum_address(self):
+        pattern = self.compiled_patterns.ETHEREUM_ADDRESS
+
+        valid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
+            "0x5ed8cee6b63b1c6afce3ad7c92f4fd7e1b8fad9f",
+            "0xfac399e49f5b6867af186390270af252e683b154",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32",
+            "0xd1ade25ccd3d550a7eb532ac759cac7be09c2719",
+            "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2c9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
+        ]
+        for address in valid_addresses:
+            self.assertTrue(pattern.match(address))
+
+        invalid_addresses = [
+            "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
+            "0x85fc71ecffb0703a650f05263a3c1b0548092f32ff",
+            "0xd1ade25 3d550a7eb532ac759cac7be09c2719",
+            "0xda6:!65fc30803cb1fb7e6d86691e20b1826dee0",
+            "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
+            "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
+        ]
+        for address in invalid_addresses:
+            self.assertFalse(pattern.match(address))
+
+    def test_uuid(self):
+        pattern = self.compiled_patterns.UUID
+
+        valid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
+            "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
+        ]
+        for uuid in valid_uuids:
+            self.assertTrue(pattern.match(uuid))
+
+        invalid_uuids = [
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62",
+            "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
+        ]
+        for uuid in invalid_uuids:
+            self.assertFalse(pattern.match(uuid))
+
+    def test_float_number(self):
+        pattern = self.compiled_patterns.FLOAT_NUMBER
+
+        valid_float_numbers = (
+            '2'
+            '15',
+            '1.4',
+            '1.45',
+            '+1.45',
+            '1.3e10',
+            '5e5',
+            '555e4',
+            '555E4',
+            '-555e4',
+            '-555E4',
+            '+1e7',
+            '+.9',
+            '-.9',
+            '-3',
+            '+3'
+        )
+        for number in valid_float_numbers:
+            self.assertTrue(pattern.match(number))
+
+        invalid_float_numbers = (
+            '',
+            'e',
+            'E',
+            '3e',
+            '.1e',
+            '1.1e',
+            '3.5ee',
+            '1.1e1e',
+            '+e3',
+            '+1e',
+            '++1.1',
+            '-+1.1',
+            '-1e',
+            '-',
+            '+'
+        )
+        for number in invalid_float_numbers:
+            self.assertIsNone(pattern.match(number))
+
+    def test_pesel(self):
+        pattern = self.compiled_patterns.PESEL
+        
+        self.assertTrue(pattern.match('44051401458'))
+        
+        invalid_pesels = ['44751401458', '4475140145', '447514014580']
+        for pesel in invalid_pesels:
+            self.assertFalse(pattern.match(pesel))
+            
