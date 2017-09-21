@@ -206,6 +206,15 @@ class PatternsTestCase(unittest.TestCase):
         for num in invalid_numbers:
             self.assertIsNone(re.match(num_pattern, num))
 
+    def test_bd_phone_number_valid(self):
+        num_pattern = self.patterns.PHONE_NUMBER['BD']
+
+        valid_numbers = ['01924547181', "+8801924547181", "+88 016 24547181", "+88-017-24547181"]
+
+        for phone_no in valid_numbers:
+            self.assertTrue(re.match(num_pattern, phone_no), 'Bangladeshi phone number: ' + phone_no)
+
+
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']
         plate = 'AMG-6363'
