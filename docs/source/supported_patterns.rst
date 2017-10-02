@@ -1,10 +1,7 @@
 Supported patterns
 ==================
 
-The first thing you need to know is the list of supported patterns.
-
-Available patterns
-------------------
+The first thing you need to know is the list of available patterns.
 
 
 BITCOIN_ADDRESS
