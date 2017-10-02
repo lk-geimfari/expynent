@@ -14,7 +14,7 @@
 **Expynent** is a tiny library that provides regular expression patterns. This can be useful if you don't want to write regular expression manually. Also you can use this library as [fixture](https://docs.pytest.org/en/latest/fixture.html) for testing framework like a [py.test](https://docs.pytest.org/en/latest/).
 
 ## Docs
-[Here](https://github.com/lk-geimfari/expynent/wiki) you can read about basics of `expynent`.
+[Here](http://expynent.readthedocs.io/en/latest/) you can read about basics of `expynent`.
 
 
 ## Installation
