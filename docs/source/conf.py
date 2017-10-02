@@ -1,7 +1,8 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Expynent documentation build configuration file, created by
-# sphinx-quickstart on Mon Oct  2 14:03:11 2017.
+# expynent documentation build configuration file, created by
+# sphinx-quickstart on Mon Oct  2 10:25:35 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -31,6 +32,12 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages']
 
@@ -47,7 +54,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Expynent'
+project = u'expynent'
 copyright = u'2017, Likid Geimfari (Isaak Uchakaev)'
 author = u'Likid Geimfari (Isaak Uchakaev)'
 
@@ -76,16 +83,15 @@ exclude_patterns = []
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
-
+todo_include_todos = True
 
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
+#html_theme = 'alabaster'
 html_theme = 'sphinx_rtd_theme'
-
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -143,6 +149,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
+
     (master_doc, 'Expynent.tex', u'Expynent Documentation',
      u'Likid Geimfari (Isaak Uchakaev)', 'manual'),
 ]
@@ -169,5 +176,5 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-
-
+# Example configuration for intersphinx: refer to the Python standard library.
+intersphinx_mapping = {'https://docs.python.org/': None}
