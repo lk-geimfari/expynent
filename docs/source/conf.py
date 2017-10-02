@@ -165,7 +165,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'Expynent', u'Expynent Documentation',
-     author, 'Expynent', 'One line description of project.',
+     author, 'Expynent', 'Common Regular Expression Patterns',
      'Miscellaneous'),
 ]
 
