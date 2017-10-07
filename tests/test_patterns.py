@@ -145,6 +145,26 @@ class PatternsTestCase(unittest.TestCase):
         invalid_num = '-567-8901'
         self.assertIsNone(re.match(num_pattern, invalid_num))
 
+    def test_gr_phone_number_with_country_code(self):
+        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num = '+302101234567'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_gr_phone_number_no_country_code(self):
+        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num = '2101234567'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_gr_phone_number_space_separator(self):
+        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num = '+30 2101234567'
+        self.assertTrue(re.match(num_pattern, num))
+
+    def test_gr_phone_number_negative(self):
+        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        invalid_num = '+303'
+        self.assertIsNone(re.match(num_pattern, invalid_num))
+
     def test_tw_phone_number_no_country_code(self):
         num_pattern = self.patterns.PHONE_NUMBER['TW']
         num = '0220152016'
