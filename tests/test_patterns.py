@@ -15,7 +15,7 @@ class PatternsTestCase(unittest.TestCase):
         self.assertTrue(re.match(us_zip, '23414'))
 
     def test_email_address_code_pattern(self):
-        email_example = 'something@gmail.com'
+        email_example = 'Something@gmail.com'
         self.assertTrue(re.match(self.patterns.EMAIL_ADDRESS, email_example))
 
     def test_mac_address_pattern(self):
@@ -453,9 +453,9 @@ class PatternsTestCase(unittest.TestCase):
 
     def test_pesel(self):
         pesel_pattern = self.patterns.PESEL
-        
+
         self.assertTrue(re.match(pesel_pattern, '44051401458'))
-        
+
         invalid_pesels = ['44751401458', '4475140145', '447514014580']
         for pesel in invalid_pesels:
-            self.assertFalse(re.match(pesel_pattern, pesel))	
+            self.assertFalse(re.match(pesel_pattern, pesel))

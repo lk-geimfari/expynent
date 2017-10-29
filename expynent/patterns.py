@@ -152,16 +152,16 @@ ZIP_CODE = {
 
 # Pattern to match credit card.
 # This will accept patterns like:
-# XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX, 
+# XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX,
 # ...or the pattern that CREDIT_CARD_STRICT matches.
 CREDIT_CARD = '^(\d{4}[-\s]?){3}\d{4}$'
 
 # RegEx pattern for matching a credit card that must be in the form of:
-# XXXXXXXXXXXX, XXXX XXXX XXXX XXXX, or XXXX-XXXX-XXXX-XXXX  
+# XXXXXXXXXXXX, XXXX XXXX XXXX XXXX, or XXXX-XXXX-XXXX-XXXX
 CREDIT_CARD_STRICT = '^((\d{4}){3}|(\d{4}-){3}|(\d{4}\s){3})\d{4}$'
 
 # RegEx pattern for matching email address
-EMAIL_ADDRESS = "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
+EMAIL_ADDRESS = "([A-Za-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
 
 # RegEx pattern for matching IPv4 and IPv6 addresses.
 IP_V4 = r"^{0}\.{0}\.{0}\.{0}$".format(r"([01]?\d{1,2}|2(5[0-5]|[0-4]\d))")
