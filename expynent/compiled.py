@@ -9,9 +9,9 @@ from expynent.utils import is_private
 
 def compile_patterns_in_dictionary(dictionary):
     """
-    Replace all strings in dictionary with compiled version of themselves and return dictionary.
+    Replace all strings in dictionary with compiled
+    version of themselves and return dictionary.
     """
-
     for key, value in dictionary.items():
         if isinstance(value, str):
             dictionary[key] = re.compile(value)
@@ -26,7 +26,7 @@ URL = re.compile(patterns.URL, re.IGNORECASE)
 
 __SPECIAL_CASES__ = ('IP_V6', 'URL')
 
-# get pattern constants from expynent.patterns
+# Get pattern constants from expynent.patterns
 # filter out patterns that begin with underscores and those that are already compiled
 PATTERNS = tuple((pattern, getattr(patterns, pattern)) for pattern in dir(patterns)
                  if not is_private(pattern) and pattern not in __SPECIAL_CASES__)
