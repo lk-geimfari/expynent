@@ -234,6 +234,23 @@ class PatternsTestCase(unittest.TestCase):
         for phone_no in valid_numbers:
             self.assertTrue(re.match(num_pattern, phone_no), 'Bangladeshi phone number: ' + phone_no)
 
+    def test_ru_phone_number_valid(self):
+        num_pattern = self.patterns.PHONE_NUMBER['RU']
+
+        valid_numbers = ['+74951234567', '84951234567', '74951234567', '+7 495 123 45 67', '8(926)123-45-67',
+                         '123-45-67', '9261234567', '74951234567', '(495)1234567', '(495) 123 45 67', '84951234567',
+                         '8-495-123-45-67', '8 499 1234 234', '8 499 12 12 888', '8 499 12 555 12', '8 499 123 8 123']
+        for number in valid_numbers:
+            num_match = re.match(num_pattern, number)
+            self.assertTrue(num_match, number)
+
+    def test_ru_phone_number_invalid(self):
+        num_pattern = self.patterns.PHONE_NUMBER['RU']
+
+        invalid_numbers = ['', '+7492323', '2323', '74951234567899']
+
+        for number in invalid_numbers:
+            self.assertIsNone(re.match(num_pattern, number))
 
     def test_tw_license_plate_3_plus_4(self):
         plate_pattern = self.patterns.LICENSE_PLATE['TW']

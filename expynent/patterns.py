@@ -308,7 +308,9 @@ PHONE_NUMBER = {
     'DK': r'^(?:\+45)?(\s*\d){8}$',
     # RegeEx pattern to match Polish phone numbers (both geographic and mobile ones)
     'PL': r'^(?P<country>\+?48)?\W*\(?(?P<area>\d{2})?\)?\W*'
-          r'(?P<phone>\d{3}(?:\W*(?:\d{2}|\d{3})){2})$'
+          r'(?P<phone>\d{3}(?:\W*(?:\d{2}|\d{3})){2})$',
+    # RegEx pattern to match Russian phone numbers
+    'RU': r'^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$'
 }
 
 # List of RegEx patterns for license plates
