@@ -1,30 +1,27 @@
 import re
-import unittest
 from expynent import patterns
 from tests.ipv6_fixtures import IP_V6_DATA
 from tests.ipv4_fixtures import IP_V4_DATA
 from tests.url_fixtures import VALID_URLS, INVALID_URLS
 
 
-class PatternsTestCase(unittest.TestCase):
-    def setUp(self):
-        self.patterns = patterns
+class TestPatterns:
 
     def test_zip_code_pattern(self):
-        us_zip = self.patterns.ZIP_CODE['US']
-        self.assertTrue(re.match(us_zip, '23414'))
+        us_zip = patterns.ZIP_CODE['US']
+        assert re.match(us_zip, '23414')
 
     def test_email_address_code_pattern(self):
         email_example = 'Something@gmail.com'
-        self.assertTrue(re.match(self.patterns.EMAIL_ADDRESS, email_example))
+        assert re.match(patterns.EMAIL_ADDRESS, email_example)
 
     def test_mac_address_pattern(self):
-        mac_pattern = self.patterns.MAC_ADDRESS
+        mac_pattern = patterns.MAC_ADDRESS
         mac = '00:08:C7:1B:8C:02'
-        self.assertTrue(re.match(mac_pattern, mac))
+        assert re.match(mac_pattern, mac)
 
     def test_credit_card_pattern(self):
-        credit_strict_pattern = self.patterns.CREDIT_CARD_STRICT
+        credit_strict_pattern = patterns.CREDIT_CARD_STRICT
         valid_pats = set((
             '3519 2073 7960 3241',
             '3519-2073-7960-3241',
@@ -45,138 +42,138 @@ class PatternsTestCase(unittest.TestCase):
         ))
         # Test strict pattern.
         for validpat in valid_pats:
-            self.assertTrue(re.match(credit_strict_pattern, validpat))
+            assert re.match(credit_strict_pattern, validpat)
         # Test non-strict patern.
-        credit_pattern = self.patterns.CREDIT_CARD
+        credit_pattern = patterns.CREDIT_CARD
         for validpat in valid_pats.union(nonstrict_pats):
-            self.assertTrue(re.match(credit_pattern, validpat))
+            assert re.match(credit_pattern, validpat)
 
         # Test invalid.txt patterns for strict.
         for invalidpat in invalid_pats.union(nonstrict_pats):
-            self.assertFalse(re.match(credit_strict_pattern, invalidpat))
+            assert not re.match(credit_strict_pattern, invalidpat)
 
         # Test invalid.txt patterns for non-strict.
         for invalidpat in invalid_pats:
-            self.assertFalse(re.match(credit_pattern, invalidpat))
+            assert not re.match(credit_pattern, invalidpat)
 
     def test_ip_v4_pattern(self):
-        ip_v4_pattern = self.patterns.IP_V4
+        ip_v4_pattern = patterns.IP_V4
         for ip_v4, result in IP_V4_DATA.items():
             if result:
-                self.assertIsNotNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+                assert re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
             else:
-                self.assertIsNone(re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+                assert re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
 
     def test_ip_v6_pattern(self):
-        ip_v6_pattern = self.patterns.IP_V6
+        ip_v6_pattern = patterns.IP_V6
         for ip_v6, result in IP_V6_DATA.items():
             if result:
-                self.assertIsNotNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+                assert re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
             else:
-                self.assertIsNone(re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL))
+                assert re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
 
     def test_hex_value_pattern(self):
-        hex_pattern = self.patterns.HEX_VALUE
+        hex_pattern = patterns.HEX_VALUE
         hex_value = '#a3c113'
-        self.assertTrue(re.match(hex_pattern, hex_value))
+        assert re.match(hex_pattern, hex_value)
 
     def test_slug_pattern(self):
-        slug_pattern = self.patterns.SLUG
+        slug_pattern = patterns.SLUG
         slug = 'greatest-slug-ever'
-        self.assertTrue(re.match(slug_pattern, slug))
+        assert re.match(slug_pattern, slug)
 
     def test_bitcoin_address(self):
-        bitcoin_pattern = self.patterns.BITCOIN_ADDRESS
+        bitcoin_pattern = patterns.BITCOIN_ADDRESS
         address = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT'
-        self.assertTrue(re.match(bitcoin_pattern, address))
+        assert re.match(bitcoin_pattern, address)
 
     def test_yandex_money_pattern(self):
-        ym_pattern = self.patterns.YANDEX_MONEY
+        ym_pattern = patterns.YANDEX_MONEY
         ym = '97508675463414'
-        self.assertTrue(re.match(ym_pattern, ym))
+        assert re.match(ym_pattern, ym)
 
     def test_longitude_pattern(self):
-        longitude_pattern = self.patterns.LONGITUDE
+        longitude_pattern = patterns.LONGITUDE
         x = '112.1844026051194'
-        self.assertTrue(re.match(longitude_pattern, x))
+        assert re.match(longitude_pattern, x)
 
     def test_latitude_pattern(self):
-        latitude_pattern = self.patterns.LATITUDE
+        latitude_pattern = patterns.LATITUDE
         x = '-66.4214188124611'
-        self.assertTrue(re.match(latitude_pattern, x))
+        assert re.match(latitude_pattern, x)
 
     def test_us_phone_number_no_seperators(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         num = '12345678901'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_ni_phone_number_no_seperators(self):
-        num_pattern = self.patterns.PHONE_NUMBER['NI']
+        num_pattern = patterns.PHONE_NUMBER['NI']
         num = '88888888'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_ni_phone_number_with_country_code(self):
-        num_pattern = self.patterns.PHONE_NUMBER['NI']
+        num_pattern = patterns.PHONE_NUMBER['NI']
         num = '+50588888888'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_us_phone_number_no_country_code(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         num = '2345678901'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_us_phone_number_mixed_separator(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         num = '1 (234) 567-8901'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_us_phone_number_space_separator(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         num = '1 234 567 8901'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_us_phone_number_dash_separator(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         num = '1-234-567-8901'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_us_phone_number_negative(self):
-        num_pattern = self.patterns.PHONE_NUMBER['US']
+        num_pattern = patterns.PHONE_NUMBER['US']
         invalid_num = '-567-8901'
-        self.assertIsNone(re.match(num_pattern, invalid_num))
+        assert re.match(num_pattern, invalid_num) is None
 
     def test_gr_phone_number_with_country_code(self):
-        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num_pattern = patterns.PHONE_NUMBER['GR']
         num = '+302101234567'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_gr_phone_number_no_country_code(self):
-        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num_pattern = patterns.PHONE_NUMBER['GR']
         num = '2101234567'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_gr_phone_number_space_separator(self):
-        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num_pattern = patterns.PHONE_NUMBER['GR']
         num = '+30 2101234567'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_gr_phone_number_negative(self):
-        num_pattern = self.patterns.PHONE_NUMBER['GR']
+        num_pattern = patterns.PHONE_NUMBER['GR']
         invalid_num = '+303'
-        self.assertIsNone(re.match(num_pattern, invalid_num))
+        assert re.match(num_pattern, invalid_num) is None
 
     def test_tw_phone_number_no_country_code(self):
-        num_pattern = self.patterns.PHONE_NUMBER['TW']
+        num_pattern = patterns.PHONE_NUMBER['TW']
         num = '0220152016'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_tw_phone_number_plus(self):
-        num_pattern = self.patterns.PHONE_NUMBER['TW']
+        num_pattern = patterns.PHONE_NUMBER['TW']
         num = '+886912345678'
-        self.assertTrue(re.match(num_pattern, num))
+        assert re.match(num_pattern, num)
 
     def test_dk_phone_number(self):
-        plate_pattern = self.patterns.PHONE_NUMBER['DK']
+        plate_pattern = patterns.PHONE_NUMBER['DK']
 
         base_numbers = [
             '12 23 45 67',
@@ -190,7 +187,7 @@ class PatternsTestCase(unittest.TestCase):
         for base_no in base_numbers:
             for prefix in prefixes:
                 phone_no = prefix + base_no
-                self.assertTrue(re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no)
+                assert re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no
 
         invalid_numbers = [
             '1234567',
@@ -200,10 +197,10 @@ class PatternsTestCase(unittest.TestCase):
         for base_no in invalid_numbers:
             for prefix in prefixes:
                 phone_no = prefix + base_no
-                self.assertFalse(re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no)
+                assert not re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no
 
     def test_pl_phone_number_valid(self):
-        num_pattern = self.patterns.PHONE_NUMBER['PL']
+        num_pattern = patterns.PHONE_NUMBER['PL']
 
         valid_numbers = ['+48(42)2150000', '+48 422150000', '+48 (42)2150000', '+48 (42) 2150000',
                          '+48 (42) 215 00 00', '+48 (42) 215-00-00', '422150000', '(42) 2150000',
@@ -212,104 +209,104 @@ class PatternsTestCase(unittest.TestCase):
 
         for index, num in enumerate(valid_numbers):
             num_match = re.match(num_pattern, num)
-            self.assertTrue(num_match, num)
+            assert num_match, num
             if index < 10:
-                self.assertEqual(num_match.group('area'), '42')
+                assert num_match.group('area') == '42'
                 if index < 6:
-                    self.assertEqual(num_match.group('country'), '+48')
+                    assert num_match.group('country') == '+48'
 
     def test_pl_phone_number_invalid(self):
-        num_pattern = self.patterns.PHONE_NUMBER['PL']
+        num_pattern = patterns.PHONE_NUMBER['PL']
 
         invalid_numbers = ['', '123456', '123456789000']
 
         for num in invalid_numbers:
-            self.assertIsNone(re.match(num_pattern, num))
+            assert re.match(num_pattern, num) is None
 
     def test_bd_phone_number_valid(self):
-        num_pattern = self.patterns.PHONE_NUMBER['BD']
+        num_pattern = patterns.PHONE_NUMBER['BD']
 
         valid_numbers = ['01924547181', "+8801924547181", "+88 016 24547181", "+88-017-24547181"]
 
         for phone_no in valid_numbers:
-            self.assertTrue(re.match(num_pattern, phone_no), 'Bangladeshi phone number: ' + phone_no)
+            assert re.match(num_pattern, phone_no), 'Bangladeshi phone number: ' + phone_no
 
     def test_ru_phone_number_valid(self):
-        num_pattern = self.patterns.PHONE_NUMBER['RU']
+        num_pattern = patterns.PHONE_NUMBER['RU']
 
         valid_numbers = ['+74951234567', '84951234567', '74951234567', '+7 495 123 45 67', '8(926)123-45-67',
                          '123-45-67', '9261234567', '74951234567', '(495)1234567', '(495) 123 45 67', '84951234567',
                          '8-495-123-45-67', '8 499 1234 234', '8 499 12 12 888', '8 499 12 555 12', '8 499 123 8 123']
         for number in valid_numbers:
             num_match = re.match(num_pattern, number)
-            self.assertTrue(num_match, number)
+            assert num_match, number
 
     def test_ru_phone_number_invalid(self):
-        num_pattern = self.patterns.PHONE_NUMBER['RU']
+        num_pattern = patterns.PHONE_NUMBER['RU']
 
         invalid_numbers = ['', '+7492323', '2323', '74951234567899']
 
         for number in invalid_numbers:
-            self.assertIsNone(re.match(num_pattern, number))
+            assert re.match(num_pattern, number) is None
 
     def test_tw_license_plate_3_plus_4(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = 'AMG-6363'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_2_letters_plus_4(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = 'AR-1234'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_2_digits_plus_4(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = '22-1234'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_4_plus_2(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = '5230-RH'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_3_plus_3(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = '297-MAY'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_2_plus_3(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = 'XD-123'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_3_plus_2(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = '666-XB'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_tw_license_plate_2_plus_2(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['TW']
+        plate_pattern = patterns.LICENSE_PLATE['TW']
         plate = '01-SA'
-        self.assertTrue(re.match(plate_pattern, plate))
+        assert re.match(plate_pattern, plate)
 
     def test_time24h_format(self):
-        pattern = self.patterns.TIME_24H_FORMAT
+        pattern = patterns.TIME_24H_FORMAT
         time = '23:45'
-        self.assertTrue(re.match(pattern, time))
+        assert re.match(pattern, time)
 
         time_2 = '13:04'
-        self.assertTrue(re.match(pattern, time_2))
+        assert re.match(pattern, time_2)
 
         time_3 = '09:22'
-        self.assertTrue(re.match(pattern, time_3))
+        assert re.match(pattern, time_3)
 
     def test_iso_8601_datetime(self):
-        pattern = self.patterns.ISO_8601_DATETIME
+        pattern = patterns.ISO_8601_DATETIME
         datetime = '2014-12-05T12:30:45.123456-05:30'
-        self.assertTrue(re.match(pattern, datetime))
+        assert re.match(pattern, datetime)
 
     def test_isbn(self):
-        pattern = self.patterns.ISBN
+        pattern = patterns.ISBN
 
         isbns = [
             "ISBN-13: 978-1-56619-909-4",
@@ -321,10 +318,10 @@ class PatternsTestCase(unittest.TestCase):
             "1 56619 909 3",
         ]
         for isbn in isbns:
-            self.assertTrue(re.match(pattern, isbn))
+            assert re.match(pattern, isbn)
 
     def test_roman_numerals(self):
-        pattern = self.patterns.ROMAN_NUMERALS
+        pattern = patterns.ROMAN_NUMERALS
         numerals = (
             'X',
             'XL',
@@ -334,10 +331,10 @@ class PatternsTestCase(unittest.TestCase):
             'XI'
         )
         for num in numerals:
-            self.assertTrue(re.match(pattern, num))
+            assert re.match(pattern, num)
 
     def test_french_license_plates(self):
-        plate_pattern = self.patterns.LICENSE_PLATE['FR']
+        plate_pattern = patterns.LICENSE_PLATE['FR']
         valid_license_plates = (
             'AA-001-AA',
             'AA-555-AA',
@@ -375,13 +372,13 @@ class PatternsTestCase(unittest.TestCase):
         )
 
         for plate in valid_license_plates:
-            self.assertTrue(re.match(plate_pattern, plate))
+            assert re.match(plate_pattern, plate)
 
         for plate in invalid_license_plates:
-            self.assertIsNone(re.match(plate_pattern, plate))
+            assert re.match(plate_pattern, plate) is None
 
     def test_ethereum_address(self):
-        pattern = self.patterns.ETHEREUM_ADDRESS
+        pattern = patterns.ETHEREUM_ADDRESS
 
         valid_addresses = [
             "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
@@ -394,7 +391,7 @@ class PatternsTestCase(unittest.TestCase):
             "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
         ]
         for address in valid_addresses:
-            self.assertTrue(re.match(pattern, address))
+            assert re.match(pattern, address)
 
         invalid_addresses = [
             "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
@@ -405,27 +402,27 @@ class PatternsTestCase(unittest.TestCase):
             "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
         ]
         for address in invalid_addresses:
-            self.assertFalse(re.match(pattern, address))
+            assert not re.match(pattern, address)
 
     def test_uuid(self):
-        pattern = self.patterns.UUID
+        pattern = patterns.UUID
 
         valid_uuids = [
             "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
             "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
         ]
         for uuid in valid_uuids:
-            self.assertTrue(re.match(pattern, uuid))
+            assert re.match(pattern, uuid)
 
         invalid_uuids = [
             "54de7ea8-e01b-43c9-ad38-382d9e5f62",
             "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
         ]
         for uuid in invalid_uuids:
-            self.assertFalse(re.match(pattern, uuid))
+            assert not re.match(pattern, uuid)
 
     def test_float_number(self):
-        float_number_pattern = self.patterns.FLOAT_NUMBER
+        float_number_pattern = patterns.FLOAT_NUMBER
 
         valid_float_numbers = (
             '2'
@@ -446,7 +443,7 @@ class PatternsTestCase(unittest.TestCase):
             '+3'
         )
         for number in valid_float_numbers:
-            self.assertTrue(re.match(float_number_pattern, number))
+            assert re.match(float_number_pattern, number)
 
         invalid_float_numbers = (
             '',
@@ -466,13 +463,13 @@ class PatternsTestCase(unittest.TestCase):
             '+'
         )
         for number in invalid_float_numbers:
-            self.assertIsNone(re.match(float_number_pattern, number))
+            assert re.match(float_number_pattern, number) is None
 
     def test_pesel(self):
-        pesel_pattern = self.patterns.PESEL
+        pesel_pattern = patterns.PESEL
 
-        self.assertTrue(re.match(pesel_pattern, '44051401458'))
+        assert re.match(pesel_pattern, '44051401458')
 
         invalid_pesels = ['44751401458', '4475140145', '447514014580']
         for pesel in invalid_pesels:
-            self.assertFalse(re.match(pesel_pattern, pesel))
+            assert not re.match(pesel_pattern, pesel)

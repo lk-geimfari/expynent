@@ -1,21 +1,17 @@
-import unittest
-
 from expynent import compiled
 from tests.ipv6_fixtures import IP_V6_DATA
 from tests.url_fixtures import *
 
 
-class CompiledPatternsTestCase(unittest.TestCase):
-    def setUp(self):
-        self.compiled_patterns = compiled
+class TestCompiledPatterns:
 
     def test_mac_address_pattern(self):
-        mac_pattern = self.compiled_patterns.MAC_ADDRESS
+        mac_pattern = compiled.MAC_ADDRESS
         mac = '00:08:C7:1B:8C:02'
-        self.assertTrue(mac_pattern.match(mac))
+        assert mac_pattern.match(mac)
 
     def test_credit_card_pattern(self):
-        credit_strict_pattern = self.compiled_patterns.CREDIT_CARD_STRICT
+        credit_strict_pattern = compiled.CREDIT_CARD_STRICT
         valid_pats = set((
             '3519 2073 7960 3241',
             '3519-2073-7960-3241',
@@ -36,93 +32,93 @@ class CompiledPatternsTestCase(unittest.TestCase):
         ))
         # Test strict pattern.
         for validpat in valid_pats:
-            self.assertTrue(credit_strict_pattern.match(validpat))
+            assert credit_strict_pattern.match(validpat)
         # Test non-strict patern.
-        credit_pattern = self.compiled_patterns.CREDIT_CARD
+        credit_pattern = compiled.CREDIT_CARD
         for validpat in valid_pats.union(nonstrict_pats):
-            self.assertTrue(credit_pattern.match(validpat))
+            assert credit_pattern.match(validpat)
 
         # Test invalid.txt patterns for strict.
         for invalidpat in invalid_pats.union(nonstrict_pats):
-            self.assertFalse(credit_strict_pattern.match(invalidpat))
+            assert not credit_strict_pattern.match(invalidpat)
 
         # Test invalid.txt patterns for non-strict.
         for invalidpat in invalid_pats:
-            self.assertFalse(credit_pattern.match(invalidpat))
+            assert not credit_pattern.match(invalidpat)
 
     def test_ip_v4_pattern(self):
-        ip_v4_pattern = self.compiled_patterns.IP_V4
+        ip_v4_pattern = compiled.IP_V4
         ip_v4 = '209.18.181.23'
-        self.assertTrue(ip_v4_pattern.match(ip_v4))
+        assert ip_v4_pattern.match(ip_v4)
 
     def test_ip_v6_pattern(self):
-        ip_v6_pattern = self.compiled_patterns.IP_V6
+        ip_v6_pattern = compiled.IP_V6
         for ip_v6, result in IP_V6_DATA.items():
             if result:
-                self.assertIsNotNone(ip_v6_pattern.match(ip_v6))
+                assert ip_v6_pattern.match(ip_v6) is not None
             else:
-                self.assertIsNone(ip_v6_pattern.match(ip_v6))
+                assert ip_v6_pattern.match(ip_v6) is None
 
     def test_hex_value_pattern(self):
-        hex_pattern = self.compiled_patterns.HEX_VALUE
+        hex_pattern = compiled.HEX_VALUE
         hex_value = '#a3c113'
-        self.assertTrue(hex_pattern.match(hex_value))
+        assert hex_pattern.match(hex_value)
 
     def test_slug_pattern(self):
-        slug_pattern = self.compiled_patterns.SLUG
+        slug_pattern = compiled.SLUG
         slug = 'greatest-slug-ever'
-        self.assertTrue(slug_pattern.match(slug))
+        assert slug_pattern.match(slug)
 
     def test_bitcoin_pattern(self):
-        bitcoin_pattern = self.compiled_patterns.BITCOIN_ADDRESS
+        bitcoin_pattern = compiled.BITCOIN_ADDRESS
         address = '1BoatSLRHtKNngkdXEeobR76b53LETtpyT'
-        self.assertTrue(bitcoin_pattern.match(address))
+        assert bitcoin_pattern.match(address)
 
     def test_yandex_money_pattern(self):
-        ym_pattern = self.compiled_patterns.YANDEX_MONEY
+        ym_pattern = compiled.YANDEX_MONEY
         ym = '97508675463414'
-        self.assertTrue(ym_pattern.match(ym))
+        assert ym_pattern.match(ym)
 
     def test_longitude_pattern(self):
-        longitude_pattern = self.compiled_patterns.LONGITUDE
+        longitude_pattern = compiled.LONGITUDE
         x = '112.1844026051194'
-        self.assertTrue(longitude_pattern.match(x))
+        assert longitude_pattern.match(x)
 
     def test_latitude_pattern(self):
-        latitude_pattern = self.compiled_patterns.LATITUDE
+        latitude_pattern = compiled.LATITUDE
         x = '-66.4214188124611'
-        self.assertTrue(latitude_pattern.match(x))
+        assert latitude_pattern.match(x)
 
     def test_iso_8601_datetime(self):
-        iso_pattern = self.compiled_patterns.ISO_8601_DATETIME
+        iso_pattern = compiled.ISO_8601_DATETIME
         datetime = '2014-12-05T12:30:45.123456-05:30'
-        self.assertTrue(iso_pattern.match(datetime))
+        assert iso_pattern.match(datetime)
 
         _md = iso_pattern.match(datetime)
         as_dict = _md.groupdict()
 
-        self.assertIsInstance(as_dict, dict)
+        assert isinstance(as_dict, dict)
 
-        self.assertEqual('2014', as_dict['year'])
-        self.assertEqual('45.123456', as_dict['sec'])
-        self.assertEqual('05', as_dict['mday'])
-        self.assertEqual('30', as_dict['min'])
-        self.assertEqual('12', as_dict['mon'])
-        self.assertEqual('12', as_dict['hour'])
+        assert '2014' == as_dict['year']
+        assert '45.123456' == as_dict['sec']
+        assert '05' == as_dict['mday']
+        assert '30' == as_dict['min']
+        assert '12' == as_dict['mon']
+        assert '12' == as_dict['hour']
 
     def test_time24h_format(self):
-        pattern = self.compiled_patterns.TIME_24H_FORMAT
+        pattern = compiled.TIME_24H_FORMAT
         time = '23:45'
-        self.assertTrue(pattern.match(time))
+        assert pattern.match(time)
 
         time_2 = '13:04'
-        self.assertTrue(pattern.match(time_2))
+        assert pattern.match(time_2)
 
         time_3 = '09:22'
-        self.assertTrue(pattern.match(time_3))
+        assert pattern.match(time_3)
 
     def test_isbn(self):
-        pattern = self.compiled_patterns.ISBN
+        pattern = compiled.ISBN
 
         isbns = [
             "ISBN-13: 978-1-56619-909-4",
@@ -134,10 +130,10 @@ class CompiledPatternsTestCase(unittest.TestCase):
             "1 56619 909 3",
         ]
         for isbn in isbns:
-            self.assertTrue(pattern.match(isbn))
+            assert pattern.match(isbn)
 
     def test_roman_numerals(self):
-        pattern = self.compiled_patterns.ROMAN_NUMERALS
+        pattern = compiled.ROMAN_NUMERALS
         numerals = (
             'X',
             'XL',
@@ -147,19 +143,19 @@ class CompiledPatternsTestCase(unittest.TestCase):
             'XI'
         )
         for num in numerals:
-            self.assertTrue(pattern.match(num))
+            assert pattern.match(num)
 
     def test_url(self):
-        pattern = self.compiled_patterns.URL
+        pattern = compiled.URL
 
         for url in VALID_URLS:
-            self.assertTrue(pattern.match(url))
+            assert pattern.match(url)
 
         for invalid_url in INVALID_URLS:
-            self.assertFalse(pattern.match(invalid_url))
+            assert not pattern.match(invalid_url)
 
     def test_ethereum_address(self):
-        pattern = self.compiled_patterns.ETHEREUM_ADDRESS
+        pattern = compiled.ETHEREUM_ADDRESS
 
         valid_addresses = [
             "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
@@ -172,7 +168,7 @@ class CompiledPatternsTestCase(unittest.TestCase):
             "0xf4dd5c3794f1fd0cdc0327a83aa472609c806e99",
         ]
         for address in valid_addresses:
-            self.assertTrue(pattern.match(address))
+            assert pattern.match(address)
 
         invalid_addresses = [
             "0xde0B295669a9FD93d5F28D9Ec85E40f7BAe",
@@ -183,27 +179,27 @@ class CompiledPatternsTestCase(unittest.TestCase):
             "0xf4dd5c3794f1fd0cdc0327;???a472609c806e99",
         ]
         for address in invalid_addresses:
-            self.assertFalse(pattern.match(address))
+            assert not pattern.match(address)
 
     def test_uuid(self):
-        pattern = self.compiled_patterns.UUID
+        pattern = compiled.UUID
 
         valid_uuids = [
             "54de7ea8-e01b-43c9-ad38-382d9e5f62ef",
             "54DE7EA8-E01B-43C9-AD38-382D9EFF62EF"
         ]
         for uuid in valid_uuids:
-            self.assertTrue(pattern.match(uuid))
+            assert pattern.match(uuid)
 
         invalid_uuids = [
             "54de7ea8-e01b-43c9-ad38-382d9e5f62",
             "54de7ea8-e01b-43c9-ad38-382d9e5f62xz"
         ]
         for uuid in invalid_uuids:
-            self.assertFalse(pattern.match(uuid))
+            assert not pattern.match(uuid)
 
     def test_float_number(self):
-        pattern = self.compiled_patterns.FLOAT_NUMBER
+        pattern = compiled.FLOAT_NUMBER
 
         valid_float_numbers = (
             '2'
@@ -224,7 +220,7 @@ class CompiledPatternsTestCase(unittest.TestCase):
             '+3'
         )
         for number in valid_float_numbers:
-            self.assertTrue(pattern.match(number))
+            assert pattern.match(number)
 
         invalid_float_numbers = (
             '',
@@ -244,14 +240,13 @@ class CompiledPatternsTestCase(unittest.TestCase):
             '+'
         )
         for number in invalid_float_numbers:
-            self.assertIsNone(pattern.match(number))
+            assert pattern.match(number) is None
 
     def test_pesel(self):
-        pattern = self.compiled_patterns.PESEL
-        
-        self.assertTrue(pattern.match('44051401458'))
-        
+        pattern = compiled.PESEL
+
+        assert pattern.match('44051401458')
+
         invalid_pesels = ['44751401458', '4475140145', '447514014580']
         for pesel in invalid_pesels:
-            self.assertFalse(pattern.match(pesel))
-            
+            assert not pattern.match(pesel)

@@ -8,10 +8,12 @@ python:
   - "nightly"
 
 install:
-  - pip install codecov
+  - pip install pipenv
+  - pipenv install --dev --deploy
 
-script: PYTHONPATH=tests coverage run -m unittest discover tests
-  
+script:
+  - pipenv run py.test --cov=expynent
+
 after_success:
   codecov
 
