@@ -9,9 +9,24 @@ def test_zip_code_pattern():
     assert re.match(us_zip, '23414')
 
 
-def test_email_address_code_pattern():
-    email_example = 'Something@gmail.com'
-    assert re.match(patterns.EMAIL_ADDRESS, email_example)
+def test_email_address_pattern():
+    email_pattern = patterns.EMAIL_ADDRESS
+    valid_emails = (
+        'very.common@example.com',
+        'Indeed@Strange.COM',
+        'user.name+tag+sorting@example.com'
+    )
+    invalid_emails = (
+        'Abc.example.com',
+        'A@b@c@example.com',
+        'john.doe@example..com'
+    )
+
+    for valid_email in valid_emails:
+        assert re.match(email_pattern, valid_email)
+
+    for invalid_email in invalid_emails:
+        assert not re.match(email_pattern, invalid_email)
 
 
 def test_mac_address_pattern():
