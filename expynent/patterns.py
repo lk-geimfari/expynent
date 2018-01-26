@@ -310,7 +310,9 @@ PHONE_NUMBER = {
     'PL': r'^(?P<country>\+?48)?\W*\(?(?P<area>\d{2})?\)?\W*'
           r'(?P<phone>\d{3}(?:\W*(?:\d{2}|\d{3})){2})$',
     # RegEx pattern to match Russian phone numbers
-    'RU': r'^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$'
+    'RU': r'^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$',
+    # RegEx pattern to match Ukrainian phone numbers
+    'UA': r'^(\+3|3)?8?([\- ])?\(?0[\(\- ]{0,2}\d{2}[\)\- ]{0,2}(\d{2,3}[\- ]?\d{1,2}[\- ]?\d{2,3})$'
 }
 
 # List of RegEx patterns for license plates
