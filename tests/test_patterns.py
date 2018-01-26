@@ -293,6 +293,30 @@ def test_ru_phone_number_invalid():
         assert re.match(num_pattern, number) is None
 
 
+def test_ua_phone_number_valid():
+    num_pattern = patterns.PHONE_NUMBER['UA']
+
+    valid_numbers = ['+380631234567', '+38-(073)-123-45-67', '083 123 45 67',
+                     '+380 (93) 123-4567', '0671234567', '0 97 123 4 123',
+                     '38 096 123 45 67', '8(096)123-4567', '+38 (093) 1234567',
+                     '38(096)123-45-67', '8 098 1221 567', '38(098)12-12-345',
+                     '8-067-123 45-67']
+
+    for number in valid_numbers:
+        num_match = re.match(num_pattern, number)
+        assert num_match, number
+
+
+def test_ua_phone_number_invalid():
+    num_pattern = patterns.PHONE_NUMBER['UA']
+
+    invalid_numbers = ['', '+38063123', '0800', '38063123456789', '097123#456',
+                       '+8(097)1234567']
+
+    for number in invalid_numbers:
+        assert re.match(num_pattern, number) is None
+
+
 def test_tw_license_plate_3_plus_4():
     plate_pattern = patterns.LICENSE_PLATE['TW']
     plate = 'AMG-6363'
