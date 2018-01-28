@@ -11,7 +11,7 @@ def assert_is_compiled(obj):
 def test_patterns_are_compiled():
 
     def walk(dictionary):
-        for key, value in dictionary.items():
+        for value in dictionary.values():
             if isinstance(value, dict):
                 walk(value)
             else:
