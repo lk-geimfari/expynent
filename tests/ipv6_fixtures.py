@@ -25,8 +25,10 @@ IP_V6_DATA = {
     "2001:0000:1234:0000:00001:C1C0:ABCD:0876": False,  # extra 0 not allowed!
     " 2001:0000:1234:0000:0000:C1C0:ABCD:0876": True,  # leading space
     "2001:0000:1234:0000:0000:C1C0:ABCD:0876": True,  # trailing space
-    " 2001:0000:1234:0000:0000:C1C0:ABCD:0876  ": True,  # leading and trailing space
-    "2001:0000:1234:0000:0000:C1C0:ABCD:0876  0": False,  # junk after valid address
+    # leading and trailing space
+    " 2001:0000:1234:0000:0000:C1C0:ABCD:0876  ": True,
+    # junk after valid address
+    "2001:0000:1234:0000:0000:C1C0:ABCD:0876  0": False,
     "2001:0000:1234: 0000:0000:C1C0:ABCD:0876": False,  # internal space
 
     "3ffe:0b00:0000:0001:0000:0000:000a": False,  # seven segments
@@ -140,9 +142,11 @@ IP_V6_DATA = {
     "2001:1:1:1:1:1:255Z255X255Y255": False,  # garbage instead of "." in IPv4
     "::ffff:192x168.1.26": False,  # ditto
     "::ffff:192.168.1.1": True,
-    "0:0:0:0:0:0:13.1.68.3": True,  # IPv4-compatible IPv6 address, full, deprecated
+    # IPv4-compatible IPv6 address, full, deprecated
+    "0:0:0:0:0:0:13.1.68.3": True,
     "0:0:0:0:0:FFFF:129.144.52.38": True,  # IPv4-mapped IPv6 address, full
-    "::13.1.68.3": True,  # IPv4-compatible IPv6 address, compressed, deprecated
+    # IPv4-compatible IPv6 address, compressed, deprecated
+    "::13.1.68.3": True,
     "::FFFF:129.144.52.38": True,  # IPv4-mapped IPv6 address, compressed
     "fe80:0:0:0:204:61ff:254.157.241.86": True,
     "fe80::204:61ff:254.157.241.86": True,
@@ -159,8 +163,10 @@ IP_V6_DATA = {
     "1.2.3.4::": False,
 
     # Testing IPv4 addresses represented as dotted-quads
-    # Leading zero's in IPv4 addresses not allowed: some systems treat the leading "0" in ".086" as the start of an octal number
-    # Update: The BNF in RFC-3986 explicitly defines the dec-octet (for IPv4 addresses) not to have a leading zero
+    # Leading zero's in IPv4 addresses not allowed: some systems treat the
+    # leading "0" in ".086" as the start of an octal number
+    # Update: The BNF in RFC-3986 explicitly defines the dec-octet (for IPv4
+    # addresses) not to have a leading zero
     "fe80:0000:0000:0000:0204:61ff:254.157.241.086": False,
     "::ffff:192.0.2.128": True,  # but this is OK, since there's a single digit
     "XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:1.2.3.4": False,
@@ -570,9 +576,11 @@ IP_V6_DATA = {
     "::3333:4444:5555:6666:7777:8888:": False,
     "::2222:3333:4444:5555:6666:7777:8888:": False,
 
-    # Additional cases: http://crisp.tweakblogs.net/blog/2031/ipv6-validation-%28and-caveats%29.html
+    # Additional cases:
+    # http://crisp.tweakblogs.net/blog/2031/ipv6-validation-%28and-caveats%29.html
     "0:a:b:c:d:e:f::": True,
-    "::0:a:b:c:d:e:f": True,  # syntactically correct, but bad form (::0:... could be combined)
+    # syntactically correct, but bad form (::0:... could be combined)
+    "::0:a:b:c:d:e:f": True,
     "a:b:c:d:e:f:0::": True,
     "':10.0.0.1": False,
 }
