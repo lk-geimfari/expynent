@@ -11,8 +11,10 @@ install:
   - pip install pipenv
   - pipenv install --dev --deploy
 
-script:
+before_script:
   - make lint
+
+script:
   - make test
 
 after_success:
