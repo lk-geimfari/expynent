@@ -12,7 +12,8 @@ install:
   - pipenv install --dev --deploy
 
 script:
-  - pipenv run py.test --cov=expynent
+  - make lint
+  - make test
 
 after_success:
   codecov
