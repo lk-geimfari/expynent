@@ -58,7 +58,7 @@ def test_credit_card_pattern():
     # Test strict pattern.
     for validpat in valid_pats:
         assert re.match(credit_strict_pattern, validpat)
-    # Test non-strict patern.
+    # Test non-strict pattern.
     credit_pattern = patterns.CREDIT_CARD
     for validpat in valid_pats.union(nonstrict_pats):
         assert re.match(credit_pattern, validpat)
@@ -76,18 +76,22 @@ def test_ip_v4_pattern():
     ip_v4_pattern = patterns.IP_V4
     for ip_v4, result in IP_V4_DATA.items():
         if result:
-            assert re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
+            assert re.match(ip_v4_pattern, ip_v4,
+                            re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
         else:
-            assert re.match(ip_v4_pattern, ip_v4, re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
+            assert re.match(ip_v4_pattern, ip_v4,
+                            re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
 
 
 def test_ip_v6_pattern():
     ip_v6_pattern = patterns.IP_V6
     for ip_v6, result in IP_V6_DATA.items():
         if result:
-            assert re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
+            assert re.match(ip_v6_pattern, ip_v6,
+                            re.VERBOSE | re.IGNORECASE | re.DOTALL) is not None
         else:
-            assert re.match(ip_v6_pattern, ip_v6, re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
+            assert re.match(ip_v6_pattern, ip_v6,
+                            re.VERBOSE | re.IGNORECASE | re.DOTALL) is None
 
 
 def test_hex_value_pattern():
@@ -225,7 +229,8 @@ def test_dk_phone_number():
     for base_no in base_numbers:
         for prefix in prefixes:
             phone_no = prefix + base_no
-            assert re.match(plate_pattern, phone_no), 'Danish phone number: ' + phone_no
+            assert re.match(plate_pattern, phone_no), \
+                'Danish phone number: {}'.format(phone_no)
 
     invalid_numbers = [
         '1234567',
@@ -235,16 +240,18 @@ def test_dk_phone_number():
     for base_no in invalid_numbers:
         for prefix in prefixes:
             phone_no = prefix + base_no
-            assert not re.match(plate_pattern, phone_no), 'Invalid Danish phone number: ' + phone_no
+            assert not re.match(plate_pattern, phone_no), \
+                'Invalid Danish phone number: {}'.format(phone_no)
 
 
 def test_pl_phone_number_valid():
     num_pattern = patterns.PHONE_NUMBER['PL']
 
-    valid_numbers = ['+48(42)2150000', '+48 422150000', '+48 (42)2150000', '+48 (42) 2150000',
-                     '+48 (42) 215 00 00', '+48 (42) 215-00-00', '422150000', '(42) 2150000',
-                     '(42) 215 00 00', '42 215 00 00', '2150000', '215 00 00', '215-00-00',
-                     '123456789', '123 456 789', '123-456-789']
+    valid_numbers = ['+48(42)2150000', '+48 422150000', '+48 (42)2150000',
+                     '+48 (42) 2150000', '+48 (42) 215 00 00',
+                     '+48 (42) 215-00-00', '422150000', '(42) 2150000',
+                     '(42) 215 00 00', '42 215 00 00', '2150000', '215 00 00',
+                     '215-00-00', '123456789', '123 456 789', '123-456-789']
 
     for index, num in enumerate(valid_numbers):
         num_match = re.match(num_pattern, num)
@@ -267,18 +274,23 @@ def test_pl_phone_number_invalid():
 def test_bd_phone_number_valid():
     num_pattern = patterns.PHONE_NUMBER['BD']
 
-    valid_numbers = ['01924547181', "+8801924547181", "+88 016 24547181", "+88-017-24547181"]
+    valid_numbers = ['01924547181', "+8801924547181", "+88 016 24547181",
+                     "+88-017-24547181"]
 
     for phone_no in valid_numbers:
-        assert re.match(num_pattern, phone_no), 'Bangladeshi phone number: ' + phone_no
+        assert re.match(num_pattern, phone_no), \
+            'Bangladeshi phone number: {}'.format(phone_no)
 
 
 def test_ru_phone_number_valid():
     num_pattern = patterns.PHONE_NUMBER['RU']
 
-    valid_numbers = ['+74951234567', '84951234567', '74951234567', '+7 495 123 45 67', '8(926)123-45-67',
-                     '123-45-67', '9261234567', '74951234567', '(495)1234567', '(495) 123 45 67', '84951234567',
-                     '8-495-123-45-67', '8 499 1234 234', '8 499 12 12 888', '8 499 12 555 12', '8 499 123 8 123']
+    valid_numbers = ['+74951234567', '84951234567', '74951234567',
+                     '+7 495 123 45 67', '8(926)123-45-67', '123-45-67',
+                     '9261234567', '74951234567', '(495)1234567',
+                     '(495) 123 45 67', '84951234567', '8-495-123-45-67',
+                     '8 499 1234 234', '8 499 12 12 888', '8 499 12 555 12',
+                     '8 499 123 8 123']
     for number in valid_numbers:
         num_match = re.match(num_pattern, number)
         assert num_match, number
