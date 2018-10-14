@@ -392,12 +392,8 @@ def test_gr_license_plate_greek_chars():
         'ABEE=121212',
         'ΑΒΕ--1212'
     ]
-    assert all(
-        [re.match(plate_pattern, plate) for plate in valid_plates]
-    )
-    assert all(
-        [not re.match(plate_pattern, plate) for plate in invalid_plates]
-    )
+    assert all(re.match(plate_pattern, plate) for plate in valid_plates)
+    assert all(not re.match(plate_pattern, plate) for plate in invalid_plates)
 
 
 def test_time24h_format():
