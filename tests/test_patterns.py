@@ -376,6 +376,27 @@ def test_tw_license_plate_2_plus_2():
     plate = '01-SA'
     assert re.match(plate_pattern, plate)
 
+def test_gr_license_plate_greek_chars():
+    plate_pattern = patterns.LICENSE_PLATE['GR']
+
+    valid_plates = [
+        'ABE-1234',
+        'AAA-1212',
+        'ΑΒΕ-1212'
+    ]
+    invalid_plates = [
+        'ABE-12',
+        'AB-1212',
+        'ABE 1234',
+        'ABEE=121212',
+        'ΑΒΕ--1212'
+    ]
+    assert all(
+        [re.match(plate_pattern, plate) for plate in valid_plates]
+    )
+    assert all(
+        [not re.match(plate_pattern, plate) for plate in invalid_plates]
+    )
 
 def test_time24h_format():
     pattern = patterns.TIME_24H_FORMAT
