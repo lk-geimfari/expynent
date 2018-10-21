@@ -79,7 +79,7 @@ You can look at the list of supported patterns below:
 14. `LICENSE_PLATE`
 15. `LONGITUDE`
 16. `MAC_ADDRESS`
-17. `PGP FINGERPRINT`
+17. `PGP_FINGERPRINT`
 18. `PHONE_NUMBER`
 19. `ROMAN_NUMERALS`
 20. `SLUG`
