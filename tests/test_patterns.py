@@ -605,7 +605,8 @@ def test_pgp_signature():
         'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09'
     )
     assert all(
-        re.match(pgp_signature_pattern, _) for _ in valid_fingerprints
+        re.match(pgp_signature_pattern, valid_fingerprint)
+        for valid_fingerprint in valid_fingerprints
     )
     assert not all(
         re.match(pgp_signature_pattern, _) for _ in invalid_fingerprints
