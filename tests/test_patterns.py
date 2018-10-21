@@ -609,5 +609,6 @@ def test_pgp_signature():
         for valid_fingerprint in valid_fingerprints
     )
     assert not all(
-        re.match(pgp_signature_pattern, _) for _ in invalid_fingerprints
+        re.match(pgp_signature_pattern, invalid_fingerprint)
+        for invalid_fingerprint in invalid_fingerprints
     )
