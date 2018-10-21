@@ -588,3 +588,21 @@ def test_pesel():
     invalid_pesels = ['44751401458', '4475140145', '447514014580']
     for pesel in invalid_pesels:
         assert not re.match(pesel_pattern, pesel)
+
+
+def test_pgp_signature():
+    pgp_signature_pattern = patterns.PGP_FINGERPRINT
+    valid_fingerprints = (
+        'FA0536C58CEBB95113EF405A4AB59C001B091337',
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 1337'
+    )
+    invalid_fingerprints = (
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 133R',
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 133',
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09  1337',
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09  1337',
+        ' FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09  1337 ',
+        'FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09'
+    )
+    assert all(re.match(pgp_signature_pattern, _) for _ in valid_fingerprints)
+    assert not all(re.match(pgp_signature_pattern, _) for _ in invalid_fingerprints)

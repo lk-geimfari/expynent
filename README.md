@@ -79,14 +79,15 @@ You can look at the list of supported patterns below:
 14. `LICENSE_PLATE`
 15. `LONGITUDE`
 16. `MAC_ADDRESS`
-17. `PHONE_NUMBER`
-18. `ROMAN_NUMERALS`
-19. `SLUG`
-20. `TIME_24H_FORMAT`
-21. `URL`
-22. `UUID`
-23. `YANDEX_MONEY`
-24. `ZIP_CODE`
+17. `PGP FINGERPRINT`
+18. `PHONE_NUMBER`
+19. `ROMAN_NUMERALS`
+20. `SLUG`
+21. `TIME_24H_FORMAT`
+22. `URL`
+23. `UUID`
+24. `YANDEX_MONEY`
+25. `ZIP_CODE`
 
 ## Contributing
 Your contributions are always welcome! Please take a look at the [contribution](https://github.com/lk-geimfari/expynent/blob/master/CONTRIBUTING.md) guidelines first.
