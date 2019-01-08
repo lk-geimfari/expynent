@@ -1,12 +1,4 @@
 ## Expynent - Common Regular Expression
-<br>
-<p align="center">
-    <a href="https://github.com/lk-geimfari/expynent/">
-        <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo_2.png">
-    </a>
-</p>
-
-<br>
 
 [![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
 [![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
@@ -22,13 +14,14 @@ This is a really tiny library and here no need for the [documentation](http://ex
 
 ## Installation
 
-```zsh
-➜  ~  pip install expynent
+```
+ ~  pip install expynent
 ```
 
 
 ## Usage
 Just import the pattern that you want:
+
 ```python
 import re
 from expynent.patterns import ZIP_CODE
