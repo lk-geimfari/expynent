@@ -6,5 +6,5 @@ Repository: https://github.com/lk-geimfari/expynent
 
 from .patterns import *
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 __author__ = 'Likid Geimfari'
