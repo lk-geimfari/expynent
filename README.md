@@ -1,4 +1,4 @@
-## Expynent
+## Expynent - Common Regular Expression
 
 [![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
 [![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
@@ -11,7 +11,8 @@
 </p>
 
 
-**Expynent** is a tiny library that provides regular expression patterns. This can be useful if you don't want to write regular expression manually. Also you can use this library as [fixture](https://docs.pytest.org/en/latest/fixture.html) for testing framework like a [py.test](https://docs.pytest.org/en/latest/).
+**Expynent** is a tiny library that provides common regular expression patterns. This can be useful if you don't want to 
+write regular expression manually. Also you can use this library as [fixture](https://docs.pytest.org/en/latest/fixture.html) for testing framework like a [py.test](https://docs.pytest.org/en/latest/).
 
 ## Docs
 
@@ -19,13 +20,7 @@ This is a really tiny library and here no need for the [documentation](http://ex
 
 
 ## Installation
-```zsh
-➜  ~ git clone https://github.com/lk-geimfari/expynent.git
-➜  ~ cd expynent/
-➜  ~ python setup.py install
 
-```
-or
 ```zsh
 ➜  ~  pip install expynent
 ```
@@ -35,9 +30,9 @@ or
 Just import the pattern that you want:
 ```python
 import re
-import expynent.patterns as expas
+from expynent.patterns import ZIP_CODE
 
-if re.match(expas.ZIP_CODE['RU'], '43134'):
+if re.match(ZIP_CODE['RU'], '43134'):
     print('match')
 else:
     print('not match')
