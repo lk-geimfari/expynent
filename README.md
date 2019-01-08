@@ -1,15 +1,16 @@
 ## Expynent - Common Regular Expression
-
-[![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
-[![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
-[![PyPI version](https://badge.fury.io/py/expynent.svg)](https://badge.fury.io/py/expynent)
-
+<br>
 <p align="center">
     <a href="https://github.com/lk-geimfari/expynent/">
         <img src="https://raw.githubusercontent.com/lk-geimfari/expynent/master/other/logo_2.png">
     </a>
 </p>
 
+<br>
+
+[![Build Status](https://travis-ci.org/lk-geimfari/expynent.svg?branch=master)](https://travis-ci.org/lk-geimfari/expynent)
+[![codecov](https://codecov.io/gh/lk-geimfari/expynent/branch/master/graph/badge.svg)](https://codecov.io/gh/lk-geimfari/expynent)
+[![PyPI version](https://badge.fury.io/py/expynent.svg)](https://badge.fury.io/py/expynent)
 
 **Expynent** is a tiny library that provides common regular expression patterns. This can be useful if you don't want to 
 write regular expression manually. Also you can use this library as [fixture](https://docs.pytest.org/en/latest/fixture.html) for testing framework like a [py.test](https://docs.pytest.org/en/latest/).
