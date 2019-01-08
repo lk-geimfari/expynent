@@ -1,7 +1,7 @@
 import re
 from expynent import compiled
 from expynent import patterns
-from expynent.utils import is_private
+from expynent.shortcuts import is_private
 
 
 def assert_is_compiled(obj):

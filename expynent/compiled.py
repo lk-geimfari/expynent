@@ -4,7 +4,7 @@ Compiled versions of constants found in expynent.patterns
 import re
 
 from expynent import patterns
-from expynent.utils import is_private
+from expynent.shortcuts import is_private
 
 
 def compile_patterns_in_dictionary(dictionary):

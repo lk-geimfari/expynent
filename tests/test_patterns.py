@@ -37,24 +37,24 @@ def test_mac_address_pattern():
 
 def test_credit_card_pattern():
     credit_strict_pattern = patterns.CREDIT_CARD_STRICT
-    valid_pats = set((
+    valid_pats = {
+        '3519207379603241',
         '3519 2073 7960 3241',
         '3519-2073-7960-3241',
-        '3519207379603241',
-    ))
-    nonstrict_pats = set((
+    }
+    nonstrict_pats = {
         '3519-2073 7960 3241',
         '3519-2073-7960 3241',
         '3519 2073-7960 3241',
         '3519 2073-7960-3241',
         '3519 2073 7960-3241',
-    ))
-    invalid_pats = set((
-        '1234',
+    }
+    invalid_pats = {
         '123',
+        '1234',
         '12341234123413245',
         '1234_1234_1234_1234',
-    ))
+    }
     # Test strict pattern.
     for validpat in valid_pats:
         assert re.match(credit_strict_pattern, validpat)

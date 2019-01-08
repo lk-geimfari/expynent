@@ -1,4 +1,4 @@
-from expynent.utils import is_private
+from expynent.shortcuts import is_private
 
 
 def test_is_private():
