@@ -612,3 +612,32 @@ def test_pgp_signature():
         re.match(pgp_signature_pattern, invalid_fingerprint)
         for invalid_fingerprint in invalid_fingerprints
     )
+
+
+def test_base64():
+    base64_pattern = patterns.BASE64
+    valid_base64_strings = (
+        'c3VyZS4=',
+        'dGVzdCBpbnB1dA==',
+        'YW55IGNhcm5hbCBwbGVhc3VyZS4=',
+        'bGVhc3VyZS4=',
+        'ZWFzdXJlLg==',
+    )
+    invalid_base64_strings = (
+        'c3VyZS4= ',
+        'c3 VyZS4= ',
+        ' c3VyZS4= ',
+        '!3VyZS4=',
+        '3VyZS4=',
+        '=',
+        '==',
+        '',
+        ' ',
+    )
+    assert all(
+        re.match(base64_pattern, valid_base64_string) for valid_base64_string in valid_base64_strings
+    )
+    assert not all(
+        re.match(base64_pattern, invalid_base64_string) for invalid_base64_string in invalid_base64_strings
+    )
+

@@ -47,31 +47,32 @@ else:
 
 You can look at the list of supported patterns below:
 
-1. `BITCOIN_ADDRESS`
-2. `CREDIT_CARD`
-3. `CREDIT_CARD_STRICT`
-4. `EMAIL_ADDRESS`
-5. `ETHEREUM_ADDRESS`
-6. `FLOAT_NUMBER`
-7. `HEX_VALUE`
-8. `IP_V4`
-9. `IP_V6`
-10. `IRC`
-11. `ISBN`
-12. `ISO_8601_DATETIME`
-13. `LATITUDE`
-14. `LICENSE_PLATE`
-15. `LONGITUDE`
-16. `MAC_ADDRESS`
-17. `PGP_FINGERPRINT`
-18. `PHONE_NUMBER`
-19. `ROMAN_NUMERALS`
-20. `SLUG`
-21. `TIME_24H_FORMAT`
-22. `URL`
-23. `UUID`
-24. `YANDEX_MONEY`
-25. `ZIP_CODE`
+1. `BASE64`
+2. `BITCOIN_ADDRESS`
+3. `CREDIT_CARD`
+4. `CREDIT_CARD_STRICT`
+5. `EMAIL_ADDRESS`
+6. `ETHEREUM_ADDRESS`
+7. `FLOAT_NUMBER`
+8. `HEX_VALUE`
+9. `IP_V4`
+10. `IP_V6`
+11. `IRC`
+12. `ISBN`
+13. `ISO_8601_DATETIME`
+14. `LATITUDE`
+15. `LICENSE_PLATE`
+16. `LONGITUDE`
+17. `MAC_ADDRESS`
+18. `PGP_FINGERPRINT`
+19. `PHONE_NUMBER`
+20. `ROMAN_NUMERALS`
+21. `SLUG`
+22. `TIME_24H_FORMAT`
+23. `URL`
+24. `UUID`
+25. `YANDEX_MONEY`
+26. `ZIP_CODE`
 
 ## Contributing
 Your contributions are always welcome! Please take a look at the [contribution](https://github.com/lk-geimfari/expynent/blob/master/CONTRIBUTING.md) guidelines first.

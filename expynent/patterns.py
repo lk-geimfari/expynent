@@ -407,3 +407,12 @@ PESEL = r'^(?P<birthdate>\d{2}[890-3]\d[0-3]\d)(\d{4})(?P<checksum>\d)$'
 # FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 1337
 # FA0536C58CEBB95113EF405A4AB59C001B091337
 PGP_FINGERPRINT = r'^([a-fA-F0-9]{40})|(([a-fA-F0-9]{4}\ ){9}[a-fA-F0-9]{4})$'
+
+# ReGex pattern to match valid base64 encoded string
+# Match:
+# c3VyZS4=
+# dGVzdCBpbnB1dA==
+# YW55IGNhcm5hbCBwbGVhc3VyZS4=
+# bGVhc3VyZS4=
+# ZWFzdXJlLg==
+BASE64 = r'^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$'
