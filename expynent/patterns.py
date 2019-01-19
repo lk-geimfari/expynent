@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # RegEx pattern for matching zip code.
 # Using:
 #     - us_zip = ZIP_CODE['US']
