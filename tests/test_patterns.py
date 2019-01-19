@@ -640,4 +640,3 @@ def test_base64():
     assert not all(
         re.match(base64_pattern, invalid_base64_string) for invalid_base64_string in invalid_base64_strings
     )
-
