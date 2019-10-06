@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 from expynent import patterns
 from tests.ipv6_fixtures import IP_V6_DATA
@@ -383,7 +384,7 @@ def test_gr_license_plate_greek_chars():
     valid_plates = [
         'ABE-1234',
         'AAA-1212',
-        'ΑΒΕ-1212'
+        'ABE-1212'
     ]
     invalid_plates = [
         'ABE-12',
