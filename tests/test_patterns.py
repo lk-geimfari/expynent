@@ -613,3 +613,43 @@ def test_pgp_signature():
         re.match(pgp_signature_pattern, invalid_fingerprint)
         for invalid_fingerprint in invalid_fingerprints
     )
+
+
+def test_ansi():
+    ansi_pattern = patterns.ANSI
+    ansis = [
+        'foo\u001B[4mcake\u001B[0m',
+        '\u001B[4mcake\u001B[0m',
+        'foo\u001B[4mcake\u001B[0m',
+        '\u001B[0m\u001B[4m\u001B[42m\u001B[31mfoo\u001B[39m\u001B[49m\u001B[24mfoo\u001B[0m',
+        'foo\u001B[mfoo',
+        '\u001B[00;38;5;244m\u001B[m\u001B[00;38;5;33mfoo\u001B[0m',  # from ls command
+        '\u001B[0;33;49;3;9;4mbar\u001B[0m',
+        'foo\u001B[0gbar'  # tabs sequence in a string
+        'foo\u001B[Kbar'  # line from cursor right in a string
+        'foo\u001B[2Jbar'  # foo\u001B[2Jbar
+    ]
+    assert all(
+        re.findall(ansi_pattern, ansi)
+        for ansi in ansis
+    )
+    assert re.findall(ansi_pattern, 'foo\u001B[0;33;49;3;9;4mbar')[0] == '\u001B[0;33;49;3;9;4m'
+    assert re.findall(ansi_pattern, 'foo\u001B[0gbar')[0] == '\u001B[0g'
+    assert re.findall(ansi_pattern, 'foo\u001B[Kbar')[0] == '\u001B[K'
+    assert re.findall(ansi_pattern, 'foo\u001B[2Jbar')[0] == '\u001B[2J'
+
+
+def test_ansi_terminal_link():
+    ansi_pattern = patterns.ANSI
+    assert re.match(ansi_pattern, '\u001B]8;k=v;https://example-a.com/?a_b=1&c=2#tit%20le\u0007click\u001B]8;;\u0007')
+    assert re.match(ansi_pattern, '\u001B]8;;mailto:no-replay@mail.com\u0007mail\u001B]8;;\u0007')
+    assert re.findall(ansi_pattern,
+                      '\u001B]8;k=v;https://example-a.com/?a_b=1&c=2#tit%20le\u0007click\u001B]8;;\u0007') == [
+               '\u001B]8;k=v;https://example-a.com/?a_b=1&c=2#tit%20le\u0007',
+               '\u001B]8;;\u0007'
+           ]
+    assert re.findall(ansi_pattern,
+                      '\u001B]8;;mailto:no-reply@mail.com\u0007mail-me\u001B]8;;\u0007') == [
+               '\u001B]8;;mailto:no-reply@mail.com\u0007',
+               '\u001B]8;;\u0007'
+           ]

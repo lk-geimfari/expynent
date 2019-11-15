@@ -408,3 +408,7 @@ PESEL = r'^(?P<birthdate>\d{2}[890-3]\d[0-3]\d)(\d{4})(?P<checksum>\d)$'
 # FA05 36C5 8CEB B951 13EF 405A 4AB5 9C00 1B09 1337
 # FA0536C58CEBB95113EF405A4AB59C001B091337
 PGP_FINGERPRINT = r'^([a-fA-F0-9]{40})|(([a-fA-F0-9]{4}\ ){9}[a-fA-F0-9]{4})$'
+
+# This is regular expression from ansi-regex https://github.com/chalk/ansi-regex/blob/master/index.js
+ANSI = r'[\u001B\u009B][\[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[-a-zA-Z\d\/#&.:=?%@~_]*)*)?\u0007)|' \
+       r'(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))'
