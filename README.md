@@ -72,6 +72,7 @@ You can look at the list of supported patterns below:
 23. `UUID`
 24. `YANDEX_MONEY`
 25. `ZIP_CODE`
+26. `ANSI`
 
 ## Contributing
 Your contributions are always welcome! Please take a look at the [contribution](https://github.com/lk-geimfari/expynent/blob/master/CONTRIBUTING.md) guidelines first.
