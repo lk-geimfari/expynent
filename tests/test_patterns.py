@@ -518,6 +518,34 @@ def test_ethereum_address():
         assert not re.match(pattern, address)
 
 
+def test_ethereum_hash():
+    pattern = patterns.ETHEREUM_HASH
+
+    valid_hashes = [
+        "0x9b4554f8580afa24f03909efcf7a5e1e8da8ebdb7cbcd902f815aaf74381c4fe",
+        "0x9e3f46eae1f804c954ea5347af8307ec8163b3676580e0c7c524be702682a0ed",
+        "0x3cebeaf86ab6f319197429acdbb9f366d429cfaf0009fe24a21c43873b32cc9e",
+        "0x8ddbaba9df47e4cbd23b1c64c9a263e267398f46ca71aed656d69f0ba5c593d6",
+        "0x3d30744578a34c266b2eb5a592be90a40547af8f32b5b8d933320df34bc47fc5",
+        "0xd525feb07feb206c22f38b29cdfd0c3259201e04c8baee7cab0b09d8e230d20a",
+        "0x197d8129eeddf563e785b1593f7a476f04b3b01675fd80d7a85de554e38dbfa6",
+        "0x715c00c9d3f41a6fb936ea6d005794c7115419267247a31904b94f395e96d4ac",
+    ]
+    for address in valid_hashes:
+        assert re.match(pattern, address)
+
+    invalid_hashes = [
+        "0x3d30744578a34c266b2eb5a592be90a40547af8faed656d69f0ba5c593d6",
+        "0xda65665fc30803cb1fb7e6d86691e20b1826dee0",
+        "0x8ddbaba9df47e4cbd23b1c64  c9a263e267398f46ca71aed656d69f0ba5c593d6",
+        "0xd525feb07feb:!6c22f38b29cdfd0c3259201e04c8baee7cab0b09d8e230d20a",
+        "0xe470b1a7d2,9c5c6f03bbaa8fa20db6d404a0c32",
+        "0x",
+    ]
+    for address in invalid_hashes:
+        assert not re.match(pattern, address)
+
+
 def test_uuid():
     pattern = patterns.UUID
 

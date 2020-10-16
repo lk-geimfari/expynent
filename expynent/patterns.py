@@ -384,6 +384,14 @@ URL = r'^(?:http|ftp)s?://' \
 #    - 0x85fc71ecffb0703a650f05263a3c1b0548092f32
 ETHEREUM_ADDRESS = r'^0x([a-zA-Z0-9]{40})$'
 
+# RegEx pattern that matches Ethereum KECCAK-based hashes starting with 0x
+# Match:
+#    - 0x9b4554f8580afa24f03909efcf7a5e1e8da8ebdb7cbcd902f815aaf74381c4fe
+#    - 0x9e3f46eae1f804c954ea5347af8307ec8163b3676580e0c7c524be702682a0ed
+#    - 0x197d8129eeddf563e785b1593f7a476f04b3b01675fd80d7a85de554e38dbfa6
+#    - 0x715c00c9d3f41a6fb936ea6d005794c7115419267247a31904b94f395e96d4ac
+ETHEREUM_HASH = r'^0x([a-zA-Z0-9]{64})$'
+
 # RegEx pattern that matches UUID's.
 # Match:
 #    - 54de7ea8-e01b-43c9-ad38-382d9e5f62ef
