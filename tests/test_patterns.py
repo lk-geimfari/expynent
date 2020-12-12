@@ -10,6 +10,33 @@ def test_zip_code_pattern():
     assert re.match(us_zip, '23414')
 
 
+def test_canadian_postal_code_pattern():
+    postal_code_pattern = patterns.CANADA_POSTAL_CODE
+    valid_post_codes = (
+        "A1B 2C3",
+        "H0H 0H0",
+        "a1a 1a1",
+        "N2h9A3",
+        "Y9Z 9Z9",
+    )
+    invalid_post_codes = (
+        "Z9Z Z9Z",  # Postal codes can not start with Z
+        "A1B 2D3",  # Postal codes can not have a D
+        "A1B 2F3",  # Postal codes can not have a F
+        "A1B 2I3",  # Postal codes can not have a I
+        "A1B 2O3",  # Postal codes can not have a O
+        "A1B 2Q3",  # Postal codes can not have a Q
+        "A1B 2U3",  # Postal codes can not have a U
+        "N2h9A",    # Too short
+        "1A1 A1A"   # Numbers and letters are switched
+    )
+    for valid_post_code in valid_post_codes:
+        assert re.match(postal_code_pattern, valid_post_code)
+
+    for invalid_post_code in invalid_post_codes:
+        assert not re.match(postal_code_pattern, invalid_post_code)
+
+
 def test_email_address_pattern():
     email_pattern = patterns.EMAIL_ADDRESS
     valid_emails = (

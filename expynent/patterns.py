@@ -151,6 +151,10 @@ ZIP_CODE = {
     'ZM': r'\d{5}'
 }
 
+# Pattern to match Canadian postal codes
+# Examples A1B 2C3, a1b 2c3, A1b2C3
+CANADA_POSTAL_CODE = r'^[A-CEG-HJ-NPR-TVXYa-ceg-hj-npr-tvxy][0-9][A-CEG-HJ-NPR-TV-Za-ceg-hj-npr-tv-z] ?[0-9][A-CEG-HJ-NPR-TV-Za-ceg-hj-npr-tv-z][0-9]$'
+
 # Pattern to match credit card.
 # This will accept patterns like:
 # XXXXXXXXXXXXXXXX, XXXX-XXXX XXXX-XXXX, XXXX XXXX-XXXX XXXX,
