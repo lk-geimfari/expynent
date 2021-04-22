@@ -276,11 +276,21 @@ def test_bd_phone_number_valid():
     num_pattern = patterns.PHONE_NUMBER['BD']
 
     valid_numbers = ['01924547181', "+8801924547181", "+88 016 24547181",
-                     "+88-017-24547181"]
+                     "+8801324547181", "+88-014-24547181", "+88-017-24547181"]
 
     for phone_no in valid_numbers:
         assert re.match(num_pattern, phone_no), \
             'Bangladeshi phone number: {}'.format(phone_no)
+
+
+def test_bd_phone_number_invalid():
+    num_pattern = patterns.PHONE_NUMBER['BD']
+
+    invalid_numbers = ['01024547181', "+8801224547181", "+88 010 24547181",
+                       "+880132454", "+88-014-245471", "+88-017-4547181"]
+
+    for number in invalid_numbers:
+        assert re.match(num_pattern, number) is None
 
 
 def test_ru_phone_number_valid():
