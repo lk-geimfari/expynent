@@ -73,13 +73,13 @@ ZIP_CODE_DATA = {
     "BB":{
         "Matching Zip Code": """
         {INITIAL_TEXT}
-        {MATCHING_CODE}BB17002
+        {MATCHING_CODE}BB11002
         {FINAL_TEXT}""",
         "Non-Matching Zip Code": """
         {INITIAL_TEXT}
         {NONMATCHING_CODE}17002 ::: BB 17002 ::: BB1700 ::: BB37002
         {FINAL_TEXT}""",
-        "Expected Outcomes":["BB17002"],
+        "Expected Outcomes":["BB11002"],
     },
     "BH":{
         "Matching Zip Code": """
