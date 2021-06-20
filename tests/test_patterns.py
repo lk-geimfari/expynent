@@ -3,12 +3,38 @@ import re
 from expynent import patterns
 from tests.ipv6_fixtures import IP_V6_DATA
 from tests.ipv4_fixtures import IP_V4_DATA
+from tests.zip_code_fixtures import ZIP_CODE_DATA
 
 
 def test_zip_code_pattern():
     us_zip = patterns.ZIP_CODE['US']
     assert re.match(us_zip, '23414')
 
+def test_zip_code_patterns_find_correct_codes():
+    for country_code, country_test_data in ZIP_CODE_DATA.items():
+        country_zip_cod_in_regex = patterns.ZIP_CODE[country_code]
+        matched_zip_codes = re.finditer(country_zip_cod_in_regex, country_test_data["Matching Zip Code"])
+        check_all_expected_zip_codes_are_found(matched_zip_codes, country_test_data["Expected Outcomes"])
+        
+
+def check_extracted_code_match_expected_code(matched_zip_code, expected_zip_code_to_match):
+    assert matched_zip_code in expected_zip_code_to_match
+
+def check_all_expected_zip_codes_are_found(matched_zip_codes, expected_zip_code_to_match):
+    number_of_matched_zip_code = 0
+    for matched_zip_code in matched_zip_codes:
+        check_extracted_code_match_expected_code(matched_zip_code.group(0), expected_zip_code_to_match)
+        number_of_matched_zip_code += 1
+    assert number_of_matched_zip_code == len(expected_zip_code_to_match)
+
+def exist_matching_text(matched_zip_code):
+    return any(True for matchedText in matched_zip_code)
+
+def test_zip_code_patterns_ignore_incorrect_codes():
+    for country_code, country_test_data in ZIP_CODE_DATA.items():
+        country_zip_cod_in_regex = patterns.ZIP_CODE[country_code]
+        matched_zip_codes = re.finditer(country_zip_cod_in_regex, country_test_data["Non-Matching Zip Code"])
+        assert not exist_matching_text(matched_zip_codes)
 
 def test_email_address_pattern():
     email_pattern = patterns.EMAIL_ADDRESS
