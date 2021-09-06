@@ -433,6 +433,33 @@ def test_gr_license_plate_greek_chars():
     assert all(not re.match(plate_pattern, plate) for plate in invalid_plates)
 
 
+def test_de_license_plate():
+    pattern = patterns.LICENSE_PLATE['DE']
+
+    valid_plates = [
+        'SM-EE-1022',
+        'EL-EA-12',
+        'FR-W-233',
+        'FRE-QA-2',
+        'B-TA-918',
+        'ES-WE-12H',
+        'B-W-253E',
+    ]
+    invalid_plates = [
+        'B-CX-12EE',
+        'SM-ELR-1022E',
+        'FRESL e 32',
+        'sdf-E-123',
+        'ew-fr-234',
+        'FR.TL.243',
+        '32 TE TES',
+        'TE sS 123',
+        'RS-PW-332K'
+    ]
+    assert all(re.match(pattern, plate) for plate in valid_plates)
+    assert all(not re.match(pattern, plate) for plate in invalid_plates)
+
+
 def test_time24h_format():
     pattern = patterns.TIME_24H_FORMAT
     time = '23:45'
